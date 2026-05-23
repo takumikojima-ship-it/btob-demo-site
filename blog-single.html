@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025年の製造DXトレンド | NEXSYS株式会社</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Layout ── */
+    .single-layout {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 56px 24px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 56px;
+      align-items: start;
+    }
+
+    /* ── Article Header ── */
+    .article-header { margin-bottom: 32px; }
+    .article-header-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .article-cat-badge {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 3px 10px;
+      background: var(--c-navy);
+      color: #fff;
+    }
+    .article-header-date {
+      font-size: .8rem;
+      color: #888;
+    }
+    .article-header-updated {
+      font-size: .78rem;
+      color: #aaa;
+    }
+    .article-h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      line-height: 1.45;
+      margin: 0 0 16px;
+    }
+    .article-header-thumb {
+      background: linear-gradient(135deg, var(--c-navy) 0%, #1a3a6b 100%);
+      height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .article-header-thumb-label {
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.25);
+    }
+
+    /* ── TOC ── */
+    .article-toc {
+      border: 1px solid var(--c-border);
+      padding: 20px 24px;
+      background: var(--c-bg);
+      margin-bottom: 40px;
+    }
+    .article-toc-title {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--c-navy);
+      margin: 0 0 12px;
+    }
+    .article-toc ol {
+      margin: 0;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .article-toc li {
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+    .article-toc a {
+      color: var(--c-blue);
+      text-decoration: none;
+    }
+    .article-toc a:hover { text-decoration: underline; }
+
+    /* ── Article Body ── */
+    .article-body { font-size: .95rem; line-height: 1.9; color: #333; }
+    .article-body h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      margin: 48px 0 16px;
+      padding: 12px 16px;
+      border-left: 4px solid var(--c-blue);
+      background: #f5f8ff;
+      line-height: 1.4;
+    }
+    .article-body h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      margin: 32px 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .article-body p { margin: 0 0 20px; }
+    .article-body ul, .article-body ol {
+      padding-left: 24px;
+      margin: 0 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .article-body li { line-height: 1.7; }
+    .article-body strong { font-weight: 700; color: var(--c-navy); }
+    .article-body blockquote {
+      border-left: 4px solid var(--c-blue);
+      margin: 24px 0;
+      padding: 16px 20px;
+      background: #f5f8ff;
+      color: #444;
+      font-size: .92rem;
+    }
+    .article-body blockquote p { margin: 0; }
+
+    /* ── Data box ── */
+    .data-box {
+      border: 1px solid var(--c-border);
+      margin: 28px 0;
+    }
+    .data-box-title {
+      background: var(--c-navy);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 8px 16px;
+    }
+    .data-box-body {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .data-box-item { text-align: center; }
+    .data-box-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--c-blue);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .data-box-label { font-size: .75rem; color: #555; line-height: 1.5; }
+
+    /* ── Article Footer ── */
+    .article-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--c-border);
+    }
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .article-tag-item {
+      font-size: .75rem;
+      color: var(--c-blue);
+      border: 1px solid var(--c-blue);
+      padding: 3px 10px;
+      text-decoration: none;
+    }
+    .article-tag-item:hover { background: var(--c-blue); color: #fff; }
+    .article-share {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .article-share-label { font-size: .8rem; font-weight: 700; color: var(--c-navy); }
+    .share-btn {
+      display: inline-block;
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border: 1px solid var(--c-border);
+      color: var(--c-navy);
+      text-decoration: none;
+      transition: all .15s;
+    }
+    .share-btn:hover { background: var(--c-navy); color: #fff; border-color: var(--c-navy); }
+
+    /* ── Author box ── */
+    .author-box {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      border: 1px solid var(--c-border);
+      padding: 24px;
+      margin-top: 40px;
+      background: var(--c-bg);
+    }
+    .author-avatar {
+      width: 64px; height: 64px;
+      background: var(--c-navy);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: .7rem;
+      font-weight: 700;
+      color: rgba(255,255,255,.4);
+      letter-spacing: .05em;
+    }
+    .author-name { font-size: .95rem; font-weight: 700; color: var(--c-navy); margin: 0 0 4px; }
+    .author-role { font-size: .75rem; color: var(--c-blue); margin: 0 0 8px; }
+    .author-bio { font-size: .83rem; color: #555; line-height: 1.7; margin: 0; }
+
+    /* ── Related articles ── */
+    .related-articles { margin-top: 56px; }
+    .related-title {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--c-navy);
+      border-bottom: 2px solid var(--c-navy);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .related-list { display: flex; flex-direction: column; gap: 0; }
+    .related-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 0;
+      border: 1px solid var(--c-border);
+      border-bottom: none;
+      text-decoration: none;
+      color: inherit;
+      transition: background .15s;
+    }
+    .related-item:last-child { border-bottom: 1px solid var(--c-border); }
+    .related-item:hover { background: var(--c-bg); }
+    .related-thumb {
+      background: linear-gradient(135deg, #e8edf4, #d0d9e8);
+      aspect-ratio: 4/3;
+    }
+    .related-body { padding: 12px 16px; }
+    .related-cat { font-size: .7rem; color: var(--c-blue); margin: 0 0 4px; }
+    .related-item-title {
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      line-height: 1.5;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ── */
+    .single-sidebar { display: flex; flex-direction: column; gap: 24px; }
+    .sidebar-block { border: 1px solid var(--c-border); background: #fff; }
+    .sidebar-block-title {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: #fff;
+      background: var(--c-navy);
+      padding: 8px 14px;
+    }
+    .sidebar-block-body { padding: 14px; }
+    .sidebar-cta-card {
+      background: var(--c-navy);
+      padding: 20px 16px;
+    }
+    .sidebar-cta-title { font-size: .9rem; font-weight: 700; color: #fff; margin: 0 0 8px; line-height: 1.5; }
+    .sidebar-cta-desc { font-size: .78rem; color: rgba(255,255,255,.7); line-height: 1.6; margin: 0 0 14px; }
+
+    @media (max-width: 1024px) {
+      .single-layout { grid-template-columns: 1fr; }
+      .single-sidebar { display: grid; grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .article-h1 { font-size: 1.35rem; }
+      .article-header-thumb { height: 200px; }
+      .data-box-body { grid-template-columns: 1fr; }
+      .single-sidebar { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>製造現場の自動化・AI検査・予知保全はNEXSYSへ</span>
+    <a href="tel:052XXXXXXXX" class="topbar-tel"><span>代表</span>052-XXX-XXXX</a>
+  </div>
+</div>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">NEXSYS</span>
+      <span class="logo-tagline">株式会社</span>
+    </a>
+    <nav>
+      <a href="why.html" class="nav-link">スタンス</a>
+      <a href="items.html" class="nav-link">製品・料金</a>
+      <a href="cases.html" class="nav-link">導入事例</a>
+      <a href="flow.html" class="nav-link">導入フロー</a>
+      <a href="blog.html" class="nav-link">メディア</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a href="contact.html" class="btn btn-outline btn-sm">資料請求</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">無料相談</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav id="mobile-nav">
+  <a href="why.html" class="nav-link">スタンス</a>
+  <a href="items.html" class="nav-link">製品・料金</a>
+  <a href="cases.html" class="nav-link">導入事例</a>
+  <a href="flow.html" class="nav-link">導入フロー</a>
+  <a href="blog.html" class="nav-link">メディア</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <div class="mobile-actions">
+    <a href="contact.html" class="btn btn-primary btn-block">無料相談する</a>
+  </div>
+</nav>
+
+<div class="float-cta">
+  <a href="contact.html" class="float-btn">資料<br>請求</a>
+  <a href="contact.html" class="float-btn float-btn--orange">無料<br>相談</a>
+</div>
+
+<!-- Breadcrumb -->
+  <div style="background:#fff;border-bottom:1px solid var(--c-border);">
+    <div style="max-width:1120px;margin:0 auto;padding:10px 24px;font-size:.78rem;color:#888;display:flex;gap:8px;align-items:center;">
+      <a href="index.html" style="color:#888;text-decoration:none;">TOP</a>
+      <span>/</span>
+      <a href="blog.html" style="color:#888;text-decoration:none;">製造DXメディア</a>
+      <span>/</span>
+      <span style="color:#444;">2025年の製造DXトレンド</span>
+    </div>
+  </div>
+
+  <!-- Single Layout -->
+  <div class="single-layout">
+
+    <!-- Article -->
+    <article>
+      <div class="article-header">
+        <div class="article-header-meta">
+          <span class="article-cat-badge">製造DX</span>
+          <span class="article-header-date">2024年12月10日</span>
+          <span class="article-header-updated">（最終更新：2024年12月10日）</span>
+        </div>
+        <h1 class="article-h1">2025年の製造DXトレンド：AI・IoT・自動化の収束が中小製造業にもたらす変革</h1>
+      </div>
+
+      <div class="article-header-thumb">
+        <span class="article-header-thumb-label">FEATURED IMAGE</span>
+      </div>
+
+      <!-- TOC -->
+      <div class="article-toc">
+        <p class="article-toc-title">目次</p>
+        <ol>
+          <li><a href="#trend1">2025年を定義する3つの技術収束</a></li>
+          <li><a href="#trend2">中小製造業が今すぐ取り組むべき施策</a></li>
+          <li><a href="#trend3">投資対効果の考え方：ROIを事前に試算する</a></li>
+          <li><a href="#trend4">補助金・助成金の活用で初期費用を抑える</a></li>
+          <li><a href="#trend5">まとめ：2025年は「実行」の年</a></li>
+        </ol>
+      </div>
+
+      <!-- Body -->
+      <div class="article-body">
+
+        <p>生成AIの普及、エッジコンピューティングの低コスト化、そして政府のDX補助金拡充を背景に、2025年は中小製造業にとってデジタル変革の「実行年」となります。これまでの「検討フェーズ」から一歩踏み出す企業が急増すると見られており、早期に動いた企業ほど競争優位を確立できる局面です。</p>
+
+        <p>本記事では、製造DXの現場に15年以上携わってきたNEXSYSのエンジニアが、2025年の主要トレンドと、中小製造業が今すぐ取り組むべき施策を具体的に解説します。</p>
+
+        <div class="data-box">
+          <p class="data-box-title">製造DX投資の現状（2024年 製造業DX実態調査より）</p>
+          <div class="data-box-body">
+            <div class="data-box-item">
+              <div class="data-box-num">67%</div>
+              <div class="data-box-label">DXに取り組んでいると<br>回答した製造業</div>
+            </div>
+            <div class="data-box-item">
+              <div class="data-box-num">23%</div>
+              <div class="data-box-label">「成果が出ている」と<br>回答した割合</div>
+            </div>
+            <div class="data-box-item">
+              <div class="data-box-num">2.8年</div>
+              <div class="data-box-label">SmartLine導入企業の<br>平均投資回収期間</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="trend1">1. 2025年を定義する3つの技術収束</h2>
+
+        <p>2025年の製造DXを語る上で外せないのが、3つの技術が同時に成熟し、相互に強化し合う「技術収束」という現象です。</p>
+
+        <h3>エッジAIの民主化</h3>
+        <p>これまで大企業専有だったAI推論処理が、低コストのエッジデバイスで動作するようになりました。外観検査・異常検知・需要予測などのユースケースで、クラウド通信なしにリアルタイム処理が可能です。<strong>初期投資額は2020年比で約60%低下</strong>しており、中小製造業でも手が届く水準になっています。</p>
+
+        <h3>IoTセンサーのコモディティ化</h3>
+        <p>振動・温度・電流・画像センサーの単価が急落し、既存設備への後付けが容易になりました。5Gの工場内展開も加速しており、有線配線コストの削減と柔軟なレイアウト変更が可能です。</p>
+
+        <h3>補助金制度の充実</h3>
+        <p>ものづくり補助金・IT導入補助金・省力化投資補助金が整備され、製造DX投資の1/2〜2/3を公的資金で賄えるケースが増えています。2025年度は省力化投資補助金の予算が大幅増額される見通しです。</p>
+
+        <blockquote>
+          <p>「技術が揃った、予算もある、人手不足は深刻—この3条件が重なる2025年は、動かない理由がなくなる年だと認識しています」（NEXSYS 技術本部長 談）</p>
+        </blockquote>
+
+        <h2 id="trend2">2. 中小製造業が今すぐ取り組むべき3つの施策</h2>
+
+        <h3>施策1：稼働可視化から始める（SmartLine）</h3>
+        <p>最初のステップとして最も推奨するのが「稼働の見える化」です。設備がいつ・どれだけ止まっているかを数値で把握できていない状態では、どの問題から解決すべきかの優先順位を正しく判断できません。</p>
+        <ul>
+          <li>PLC・センサーとの接続だけで稼働データの収集が開始できる</li>
+          <li>OEE・停止時間・サイクルタイムが自動算出される</li>
+          <li>可視化だけで現場改善のPDCAが回り始めるケースが多い</li>
+        </ul>
+
+        <h3>施策2：目視検査をAIに置き換える（QualityEye）</h3>
+        <p>熟練検査員の高齢化・退職問題を抱える企業にとって、外観検査の自動化は急務です。AIによる画像検査は、<strong>熟練者比で検査精度が均一化される</strong>という副次効果もあります。</p>
+
+        <h3>施策3：故障後保全から予知保全へ（MaintPro）</h3>
+        <p>突発停止1回あたりのロスは、設備規模にもよりますが数十万〜数百万円に達することがあります。SaaS型の予知保全サービスは月額数万円から導入可能で、ROIの計算が最もシンプルなため、経営層への説明がしやすいのも特徴です。</p>
+
+        <h2 id="trend3">3. 投資対効果の考え方：ROIを事前に試算する</h2>
+        <p>製造DX投資の失敗の多くは「目標KPIを設定せずに導入した」ことに起因します。以下の計算式で事前にROIを試算してください。</p>
+        <ul>
+          <li><strong>SmartLine</strong>：（現在のOEE改善幅 × 生産能力）×（製品粗利）÷ 導入コスト</li>
+          <li><strong>QualityEye</strong>：（月間不良流出件数 × クレーム処理コスト）÷ 導入コスト</li>
+          <li><strong>MaintPro</strong>：（年間突発停止回数 × 平均ロスコスト）÷ 年間サービス費</li>
+        </ul>
+        <p>NEXSYSでは初回相談時にROI試算シートを無料でご提供しています。</p>
+
+        <h2 id="trend4">4. 補助金・助成金の活用で初期費用を抑える</h2>
+        <p>2025年度に活用できる主な公的支援は以下の通りです。申請は計画的に行う必要があるため、導入検討と並行して情報収集を開始することを強く推奨します。</p>
+        <ul>
+          <li><strong>ものづくり補助金（一般型）</strong>：補助率1/2〜2/3、上限750万〜1,250万円</li>
+          <li><strong>IT導入補助金（デジタル化基盤導入類型）</strong>：補助率1/2〜3/4、上限350万円</li>
+          <li><strong>省力化投資補助金</strong>：補助率1/2、上限1,500万円（2025年度増額予定）</li>
+        </ul>
+
+        <h2 id="trend5">5. まとめ：2025年は「実行」の年</h2>
+        <p>技術の成熟、コストの低下、補助金の充実—3条件が揃った今、製造DXに最適なタイミングが訪れています。重要なのは「完璧な計画を立ててから動く」のではなく、<strong>小さく始めて成果を確認しながら拡張する</strong>アプローチです。</p>
+        <p>NEXSYSは製品の販売だけでなく、「何から始めるべきか」の整理から伴走します。まずは60分の無料相談から始めてみてください。</p>
+
+      </div>
+
+      <!-- Article Footer -->
+      <div class="article-footer">
+        <div class="article-tags">
+          <a href="blog.html" class="article-tag-item">#製造DX</a>
+          <a href="blog.html" class="article-tag-item">#AI</a>
+          <a href="blog.html" class="article-tag-item">#IoT</a>
+          <a href="blog.html" class="article-tag-item">#補助金</a>
+          <a href="blog.html" class="article-tag-item">#スモールスタート</a>
+          <a href="blog.html" class="article-tag-item">#ROI</a>
+        </div>
+        <div class="article-share">
+          <span class="article-share-label">シェアする：</span>
+          <a href="#" class="share-btn">X (Twitter)</a>
+          <a href="#" class="share-btn">LinkedIn</a>
+          <a href="#" class="share-btn">コピー</a>
+        </div>
+      </div>
+
+      <!-- Author -->
+      <div class="author-box">
+        <div class="author-avatar">PHOTO</div>
+        <div>
+          <p class="author-name">田中 誠一</p>
+          <p class="author-role">NEXSYS株式会社 技術本部 シニアソリューションエンジニア</p>
+          <p class="author-bio">FA自動化設備の設計・導入に15年従事。自動車・電機・食品・医薬品業界の製造現場200社以上の改善プロジェクトに携わる。製造現場の視点から実践的な情報発信を行っている。</p>
+        </div>
+      </div>
+
+      <!-- Related -->
+      <div class="related-articles">
+        <p class="related-title">RELATED ARTICLES</p>
+        <div class="related-list">
+          <a href="blog-single.html" class="related-item">
+            <div class="related-thumb"></div>
+            <div class="related-body">
+              <p class="related-cat">AI・機械学習</p>
+              <p class="related-item-title">ディープラーニング外観検査の精度を左右する「学習データ品質」の作り方</p>
+            </div>
+          </a>
+          <a href="blog-single.html" class="related-item">
+            <div class="related-thumb"></div>
+            <div class="related-body">
+              <p class="related-cat">予知保全</p>
+              <p class="related-item-title">TBMからCBMへの移行ステップ：保全コストを平均28%削減した事例から学ぶ</p>
+            </div>
+          </a>
+          <a href="blog-single.html" class="related-item">
+            <div class="related-thumb"></div>
+            <div class="related-body">
+              <p class="related-cat">品質管理</p>
+              <p class="related-item-title">OEEを10%改善するための工程分析：ロス構造の見える化から始める改善サイクル</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Sidebar -->
+    <aside class="single-sidebar">
+
+      <div class="sidebar-cta-card">
+        <p class="sidebar-cta-title">記事の内容を<br>さらに詳しく聞く</p>
+        <p class="sidebar-cta-desc">無料相談で具体的なご提案をお伝えします</p>
+        <a href="contact.html" class="btn-primary" style="display:block;text-align:center;padding:11px 0;">無料相談する</a>
+      </div>
+
+      <div class="sidebar-block">
+        <p class="sidebar-block-title">この記事に関連する製品</p>
+        <div class="sidebar-block-body" style="display:flex;flex-direction:column;gap:10px;">
+          <a href="items.html#smartline" style="display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;border:1px solid var(--c-border);padding:10px;">
+            <div style="width:40px;height:40px;background:var(--c-navy);display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:rgba(255,255,255,.5);flex-shrink:0;">SL</div>
+            <div>
+              <div style="font-size:.85rem;font-weight:700;color:var(--c-navy);">SmartLine</div>
+              <div style="font-size:.75rem;color:#777;">¥3,800,000〜</div>
+            </div>
+          </a>
+          <a href="items.html#maintpro" style="display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;border:1px solid var(--c-border);padding:10px;">
+            <div style="width:40px;height:40px;background:#0d3d2a;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700;color:rgba(255,255,255,.5);flex-shrink:0;">MP</div>
+            <div>
+              <div style="font-size:.85rem;font-weight:700;color:var(--c-navy);">MaintPro</div>
+              <div style="font-size:.75rem;color:#777;">¥40,000/月〜</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="sidebar-block">
+        <p class="sidebar-block-title">カテゴリ</p>
+        <div class="sidebar-block-body" style="padding:0;">
+          <ul style="list-style:none;padding:0 14px;margin:0;">
+            <li style="border-bottom:1px solid var(--c-border);"><a href="blog.html" style="display:flex;justify-content:space-between;padding:9px 0;font-size:.83rem;color:var(--c-navy);text-decoration:none;">製造DX <span style="color:#aaa;">18</span></a></li>
+            <li style="border-bottom:1px solid var(--c-border);"><a href="blog.html" style="display:flex;justify-content:space-between;padding:9px 0;font-size:.83rem;color:var(--c-navy);text-decoration:none;">AI・機械学習 <span style="color:#aaa;">14</span></a></li>
+            <li style="border-bottom:1px solid var(--c-border);"><a href="blog.html" style="display:flex;justify-content:space-between;padding:9px 0;font-size:.83rem;color:var(--c-navy);text-decoration:none;">予知保全 <span style="color:#aaa;">11</span></a></li>
+            <li style="border-bottom:1px solid var(--c-border);"><a href="blog.html" style="display:flex;justify-content:space-between;padding:9px 0;font-size:.83rem;color:var(--c-navy);text-decoration:none;">品質管理 <span style="color:#aaa;">9</span></a></li>
+            <li><a href="blog.html" style="display:flex;justify-content:space-between;padding:9px 0;font-size:.83rem;color:var(--c-navy);text-decoration:none;">導入事例 <span style="color:#aaa;">16</span></a></li>
+          </ul>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <div>
+        <p class="cta-banner-title">製造DXの第一歩を一緒に考えましょう</p>
+        <p class="cta-banner-sub">何から始めるべきか分からない方へ、無料で整理をお手伝いします。</p>
+      </div>
+      <div class="cta-banner-btns">
+        <a href="contact.html" class="btn-primary">無料相談する</a>
+        <a href="blog.html" class="btn-outline-white">記事一覧に戻る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="font-size:1.1rem;">NEXSYS<span>株式会社</span></a>
+        <p class="footer-desc">FA自動化設備・AI検査・予知保全ソリューションで<br>日本の製造現場の競争力を高め続けます。</p>
+      </div>
+      <div class="footer-nav-group">
+        <p class="footer-nav-title">ソリューション</p>
+        <a href="items.html#smartline">SmartLine</a>
+        <a href="items.html#qualityeye">QualityEye</a>
+        <a href="items.html#maintpro">MaintPro</a>
+      </div>
+      <div class="footer-nav-group">
+        <p class="footer-nav-title">会社情報</p>
+        <a href="why.html">スタンス</a>
+        <a href="cases.html">導入事例</a>
+        <a href="blog.html">メディア</a>
+      </div>
+      <div class="footer-nav-group">
+        <p class="footer-nav-title">サポート</p>
+        <a href="flow.html">導入フロー</a>
+        <a href="faq.html">よくある質問</a>
+        <a href="contact.html">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 NEXSYS株式会社. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">サイトマップ</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="main.js"></script>
+</body>
+</html>
