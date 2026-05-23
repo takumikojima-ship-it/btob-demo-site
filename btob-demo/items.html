@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>製品・サービス・料金 | NEXSYS株式会社</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Product Jump Nav ── */
+    .product-jumpnav {
+      position: sticky;
+      top: 60px;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .product-jumpnav-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+    }
+    .pjn-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      text-decoration: none;
+      border-bottom: 3px solid transparent;
+      transition: color .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .pjn-link:hover,
+    .pjn-link.active {
+      color: var(--c-blue);
+      border-bottom-color: var(--c-blue);
+    }
+    .pjn-badge {
+      font-size: .7rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--c-orange);
+      padding: 1px 6px;
+      letter-spacing: .02em;
+    }
+
+    /* ── Product Section ── */
+    .product-section {
+      padding: 80px 0;
+      border-bottom: 1px solid var(--c-border);
+    }
+    .product-section:last-of-type { border-bottom: none; }
+    .product-section:nth-child(even) { background: var(--c-bg); }
+
+    .product-header {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 56px;
+      align-items: start;
+      max-width: 1120px;
+      margin: 0 auto 56px;
+      padding: 0 24px;
+    }
+    .product-label {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: var(--c-blue);
+      text-transform: uppercase;
+      border: 1px solid var(--c-blue);
+      padding: 3px 10px;
+      margin-bottom: 12px;
+    }
+    .product-name {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      margin: 0 0 6px;
+    }
+    .product-tagline {
+      font-size: 1.05rem;
+      color: var(--c-navy);
+      opacity: .75;
+      margin: 0 0 20px;
+    }
+    .product-desc {
+      font-size: .95rem;
+      line-height: 1.9;
+      color: #444;
+      margin: 0 0 28px;
+    }
+    .product-features {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .product-features li {
+      font-size: .9rem;
+      padding-left: 22px;
+      position: relative;
+      color: #333;
+      line-height: 1.6;
+    }
+    .product-features li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 7px;
+      width: 12px; height: 12px;
+      background: var(--c-blue);
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 14%, 80% 0%, 43% 62%);
+    }
+
+    /* ── Product Visual Placeholder ── */
+    .product-visual {
+      background: linear-gradient(135deg, var(--c-navy) 0%, #1a3a6b 100%);
+      height: 280px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .product-visual-icon {
+      font-size: 3rem;
+      color: rgba(255,255,255,.18);
+      font-weight: 900;
+      font-family: monospace;
+      letter-spacing: -.05em;
+    }
+    .product-visual-label {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.45);
+    }
+
+    /* ── Pricing Table ── */
+    .pricing-wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .pricing-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .pricing-table th,
+    .pricing-table td {
+      padding: 16px 20px;
+      text-align: center;
+      border: 1px solid var(--c-border);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+    .pricing-table thead th {
+      background: var(--c-navy);
+      color: #fff;
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .05em;
+    }
+    .pricing-table thead th:first-child {
+      background: #0b1e36;
+    }
+    .pricing-table .row-label {
+      background: #f7f9fc;
+      text-align: left;
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--c-navy);
+      padding-left: 16px;
+    }
+    .pricing-table tbody tr:nth-child(even) td:not(.row-label) {
+      background: #fafbfd;
+    }
+    .pricing-table .tier-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      display: block;
+    }
+    .pricing-table .tier-price-note {
+      font-size: .78rem;
+      color: #666;
+      display: block;
+      margin-top: 2px;
+    }
+    .pricing-table .tier-head-name {
+      font-size: 1rem;
+      font-weight: 700;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .pricing-table .tier-head-sub {
+      font-size: .78rem;
+      opacity: .8;
+      display: block;
+    }
+    .pricing-table .check {
+      display: inline-block;
+      width: 18px; height: 18px;
+      background: var(--c-blue);
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 14%, 80% 0%, 43% 62%);
+      vertical-align: middle;
+    }
+    .pricing-table .dash {
+      color: #bbb;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .pricing-table .highlight-col {
+      background: #eef4ff !important;
+      position: relative;
+    }
+    .pricing-table thead .highlight-col {
+      background: var(--c-blue) !important;
+    }
+    .recommended-badge {
+      display: inline-block;
+      background: var(--c-orange);
+      color: #fff;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 2px 7px;
+      margin-bottom: 6px;
+    }
+    .pricing-note {
+      font-size: .83rem;
+      color: #666;
+      margin-top: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── Comparison Table ── */
+    .comparison-section {
+      background: var(--c-navy);
+      padding: 80px 0;
+    }
+    .comparison-section .sec-title,
+    .comparison-section .sec-subtitle {
+      color: #fff;
+    }
+    .comparison-section .sec-subtitle { opacity: .7; }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 14px 16px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,.15);
+      font-size: .88rem;
+      color: #e0e8f4;
+    }
+    .comparison-table thead th {
+      background: rgba(255,255,255,.08);
+      font-weight: 700;
+      color: #fff;
+      font-size: .85rem;
+      letter-spacing: .05em;
+    }
+    .comparison-table thead th:first-child {
+      background: transparent;
+    }
+    .comparison-table .row-label {
+      text-align: left;
+      color: rgba(255,255,255,.7);
+      font-size: .83rem;
+    }
+    .comparison-table tbody tr:hover td {
+      background: rgba(255,255,255,.04);
+    }
+    .comparison-table .prod-price {
+      font-weight: 700;
+      color: #fff;
+      font-size: .95rem;
+    }
+    .comparison-table .check {
+      display: inline-block;
+      width: 16px; height: 16px;
+      background: #6cb4ff;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 14%, 80% 0%, 43% 62%);
+      vertical-align: middle;
+    }
+    .comparison-table .dash { color: rgba(255,255,255,.3); font-size: 1.2rem; }
+    .comparison-table .opt {
+      font-size: .75rem;
+      color: rgba(255,255,255,.5);
+    }
+
+    /* ── Option/Add-on boxes ── */
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1120px;
+      margin: 48px auto 0;
+      padding: 0 24px;
+    }
+    .option-card {
+      border: 1px solid var(--c-border);
+      padding: 24px;
+      background: #fff;
+    }
+    .option-card-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      margin: 0 0 8px;
+    }
+    .option-card-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--c-blue);
+      margin: 0 0 10px;
+    }
+    .option-card-desc {
+      font-size: .83rem;
+      color: #555;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* ── Flow strip ── */
+    .purchase-flow {
+      background: var(--c-bg);
+      padding: 64px 0;
+    }
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      max-width: 1000px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+      position: relative;
+    }
+    .flow-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(24px + 50px);
+      right: calc(24px + 50px);
+      height: 2px;
+      background: var(--c-border);
+    }
+    .flow-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .flow-step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--c-navy);
+      color: #fff;
+      font-size: .85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .flow-step-num span { font-size: .6rem; opacity: .7; }
+    .flow-step-label {
+      font-size: .8rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      line-height: 1.4;
+    }
+    .flow-step-sub {
+      font-size: .72rem;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 1024px) {
+      .product-header { grid-template-columns: 1fr; gap: 32px; }
+      .product-visual { height: 200px; }
+      .option-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .product-jumpnav-inner { overflow-x: auto; }
+      .pjn-link { padding: 12px 16px; font-size: .78rem; }
+      .product-name { font-size: 1.5rem; }
+      .pricing-table th, .pricing-table td { padding: 12px 10px; font-size: .8rem; }
+      .pricing-table .tier-price { font-size: 1.15rem; }
+      .option-grid { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: 1fr; gap: 16px; }
+      .flow-steps::before { display: none; }
+      .flow-step { flex-direction: row; gap: 16px; text-align: left; }
+      .flow-step-num { flex-shrink: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>製造現場の自動化・AI検査・予知保全はNEXSYSへ</span>
+    <a href="tel:052XXXXXXXX" class="topbar-tel"><span>代表</span>052-XXX-XXXX</a>
+  </div>
+</div>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">NEXSYS</span>
+      <span class="logo-tagline">株式会社</span>
+    </a>
+    <nav>
+      <a href="why.html" class="nav-link">スタンス</a>
+      <a href="items.html" class="nav-link">製品・料金</a>
+      <a href="cases.html" class="nav-link">導入事例</a>
+      <a href="flow.html" class="nav-link">導入フロー</a>
+      <a href="blog.html" class="nav-link">メディア</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a href="contact.html" class="btn btn-outline btn-sm">資料請求</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">無料相談</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav id="mobile-nav">
+  <a href="why.html" class="nav-link">スタンス</a>
+  <a href="items.html" class="nav-link">製品・料金</a>
+  <a href="cases.html" class="nav-link">導入事例</a>
+  <a href="flow.html" class="nav-link">導入フロー</a>
+  <a href="blog.html" class="nav-link">メディア</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <div class="mobile-actions">
+    <a href="contact.html" class="btn btn-primary btn-block">無料相談する</a>
+  </div>
+</nav>
+
+<div class="float-cta">
+  <a href="contact.html" class="float-btn">資料<br>請求</a>
+  <a href="contact.html" class="float-btn float-btn--orange">無料<br>相談</a>
+</div>
+
+<!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-label">Products &amp; Pricing</p>
+      <h1 class="page-hero-title">製品・サービス・料金</h1>
+      <p class="page-hero-desc">NEXSYS の主力3製品を、機能・仕様・導入費用まで明確にご案内します。<br>初期費用から運用コストまで、概算を事前に把握いただけます。</p>
+    </div>
+  </section>
+
+  <!-- Product Jump Nav -->
+  <div class="product-jumpnav">
+    <div class="product-jumpnav-inner">
+      <a href="#smartline" class="pjn-link">SmartLine<span class="pjn-badge">主力</span></a>
+      <a href="#qualityeye" class="pjn-link">QualityEye</a>
+      <a href="#maintpro" class="pjn-link">MaintPro</a>
+      <a href="#comparison" class="pjn-link">製品比較表</a>
+    </div>
+  </div>
+
+  <!-- ============================
+       PRODUCT 1 — SmartLine
+  ============================= -->
+  <section class="product-section fade-in" id="smartline">
+    <div class="product-header">
+      <div>
+        <span class="product-label">SmartLine</span>
+        <h2 class="product-name">FA自動化ライン制御システム</h2>
+        <p class="product-tagline">工場全体の自動化ラインを一元管理し、稼働率を最大化する基幹プラットフォーム</p>
+        <p class="product-desc">
+          SmartLine は、既存の製造ラインに組み込む形で設備・センサーをネットワーク化し、
+          PLCから上位システムまでをリアルタイムに接続します。サイロ化した設備データを統合し、
+          稼働状況・故障予兆・生産進捗をひとつの画面で把握できる環境を構築します。
+          ISO 22400 対応のKPIダッシュボードにより、現場と管理層が同じ指標で意思決定できます。
+        </p>
+        <ul class="product-features">
+          <li>PLCマルチプロトコル対応（Modbus / EtherNet/IP / PROFINET）</li>
+          <li>リアルタイム稼働可視化ダッシュボード（更新間隔 500ms）</li>
+          <li>OEE・歩留まり・サイクルタイム自動算出</li>
+          <li>AIによる設備異常の予兆検知（独自アルゴリズム）</li>
+          <li>ERPおよびMES との標準REST API連携</li>
+          <li>オンプレミス／プライベートクラウドどちらも対応</li>
+        </ul>
+      </div>
+      <div class="product-visual">
+        <div class="product-visual-icon">SL</div>
+        <div class="product-visual-label">SmartLine Dashboard</div>
+      </div>
+    </div>
+
+    <!-- Pricing Table -->
+    <div class="pricing-wrap">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th style="width:22%;">項目</th>
+            <th>Standard</th>
+            <th class="highlight-col">
+              <span class="recommended-badge">RECOMMENDED</span>
+              <span class="tier-head-name">Advanced</span>
+              <span class="tier-head-sub">最も選ばれるプラン</span>
+            </th>
+            <th>Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">初期導入費用</td>
+            <td><span class="tier-price">¥3,800,000</span><span class="tier-price-note">〜（税別）</span></td>
+            <td class="highlight-col"><span class="tier-price">¥6,200,000</span><span class="tier-price-note">〜（税別）</span></td>
+            <td><span class="tier-price">要見積</span><span class="tier-price-note">規模・構成による</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">保守・サポート費用</td>
+            <td>¥480,000/年</td>
+            <td class="highlight-col">¥720,000/年</td>
+            <td>要見積</td>
+          </tr>
+          <tr>
+            <td class="row-label">管理可能ライン数</td>
+            <td>最大4ライン</td>
+            <td class="highlight-col">最大16ライン</td>
+            <td>無制限</td>
+          </tr>
+          <tr>
+            <td class="row-label">接続デバイス数</td>
+            <td>50台まで</td>
+            <td class="highlight-col">250台まで</td>
+            <td>無制限</td>
+          </tr>
+          <tr>
+            <td class="row-label">ダッシュボード</td>
+            <td><span class="check"></span></td>
+            <td class="highlight-col"><span class="check"></span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">AI予兆検知</td>
+            <td><span class="dash">—</span></td>
+            <td class="highlight-col"><span class="check"></span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">ERP/MES API連携</td>
+            <td><span class="dash">—</span></td>
+            <td class="highlight-col"><span class="check"></span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">専任CSマネージャー</td>
+            <td><span class="dash">—</span></td>
+            <td class="highlight-col"><span class="dash">—</span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">SLA保証</td>
+            <td>営業時間内対応</td>
+            <td class="highlight-col">24時間以内応答</td>
+            <td>4時間以内応答</td>
+          </tr>
+          <tr>
+            <td class="row-label">導入期間の目安</td>
+            <td>6〜8週間</td>
+            <td class="highlight-col">8〜12週間</td>
+            <td>個別協議</td>
+          </tr>
+          <tr>
+            <td class="row-label"></td>
+            <td><a href="contact.html" class="btn-outline" style="display:inline-block;padding:10px 20px;font-size:.83rem;">お問い合わせ</a></td>
+            <td class="highlight-col"><a href="contact.html" class="btn-primary" style="display:inline-block;padding:10px 20px;font-size:.83rem;">無料相談する</a></td>
+            <td><a href="contact.html" class="btn-outline" style="display:inline-block;padding:10px 20px;font-size:.83rem;">お問い合わせ</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="pricing-note">※ 上記は標準構成の目安金額です。設備台数・設置環境・カスタマイズ要件により変動します。詳細は無料ヒアリングにてお見積もりします。<br>※ 導入工事費・配線費は別途ご相談ください。既存設備の改造が必要な場合は事前調査を実施します。</p>
+    </div>
+
+    <!-- Options -->
+    <div class="option-grid">
+      <div class="option-card">
+        <p class="option-card-title">AI解析エンジン拡張オプション</p>
+        <p class="option-card-price">¥850,000〜</p>
+        <p class="option-card-desc">独自機械学習モデルによる品質異常・ボトルネック分析をStandardプランに追加できます。学習データ収集期間として導入後3ヶ月が必要です。</p>
+      </div>
+      <div class="option-card">
+        <p class="option-card-title">クラウドリモート監視オプション</p>
+        <p class="option-card-price">¥120,000/年〜</p>
+        <p class="option-card-desc">セキュアVPN経由でNEXSYSエンジニアが遠隔監視・リモートサポートを提供。夜間・休日の突発停止にも迅速対応します。</p>
+      </div>
+      <div class="option-card">
+        <p class="option-card-title">多拠点集約ダッシュボード</p>
+        <p class="option-card-price">¥420,000〜</p>
+        <p class="option-card-desc">複数工場のSmartLine データを本社から一元把握。拠点間KPI比較・アラート統合管理が可能になります。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       PRODUCT 2 — QualityEye
+  ============================= -->
+  <section class="product-section fade-in" id="qualityeye">
+    <div class="product-header">
+      <div>
+        <span class="product-label">QualityEye</span>
+        <h2 class="product-name">AI外観検査システム</h2>
+        <p class="product-tagline">独自ディープラーニングによる高精度インライン検査で、出荷不良をゼロに近づける</p>
+        <p class="product-desc">
+          QualityEye は、カメラ・照明・AI処理ユニットを一体化した外観検査装置です。
+          従来の目視検査や汎用画像処理と異なり、独自学習済みモデルが微細なキズ・異物・寸法外れを
+          ミリ秒単位で検出します。検査結果はSmartLine と連携し、不良発生トレンド・ロット追跡・
+          是正措置のワークフローまでシームレスに管理できます。
+        </p>
+        <ul class="product-features">
+          <li>最大解像度 2000万画素カメラ対応（ライン／エリアスキャン）</li>
+          <li>推論速度 40ms以下（GPU搭載処理ユニット標準）</li>
+          <li>少量サンプルからの独自ファインチューニング（OK品50枚〜）</li>
+          <li>不良種別の自動分類と確信度スコア表示</li>
+          <li>SmartLine との双方向データ連携（オプション）</li>
+          <li>21 CFR Part 11 対応（医薬品GMP準拠ログ）</li>
+        </ul>
+      </div>
+      <div class="product-visual" style="background: linear-gradient(135deg, #0c3360 0%, #1a5799 100%);">
+        <div class="product-visual-icon">QE</div>
+        <div class="product-visual-label">QualityEye Inspection</div>
+      </div>
+    </div>
+
+    <div class="pricing-wrap">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th style="width:22%;">項目</th>
+            <th>Entry</th>
+            <th class="highlight-col">
+              <span class="recommended-badge">RECOMMENDED</span>
+              <span class="tier-head-name">Pro</span>
+              <span class="tier-head-sub">最も選ばれるプラン</span>
+            </th>
+            <th>GMP</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">初期導入費用</td>
+            <td><span class="tier-price">¥1,500,000</span><span class="tier-price-note">〜（税別）</span></td>
+            <td class="highlight-col"><span class="tier-price">¥2,800,000</span><span class="tier-price-note">〜（税別）</span></td>
+            <td><span class="tier-price">¥4,200,000</span><span class="tier-price-note">〜（税別）</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">年間ライセンス</td>
+            <td>¥360,000/年</td>
+            <td class="highlight-col">¥600,000/年</td>
+            <td>¥960,000/年</td>
+          </tr>
+          <tr>
+            <td class="row-label">検査チャンネル数</td>
+            <td>1チャンネル</td>
+            <td class="highlight-col">最大4チャンネル</td>
+            <td>最大8チャンネル</td>
+          </tr>
+          <tr>
+            <td class="row-label">検査スループット</td>
+            <td>最大120個/分</td>
+            <td class="highlight-col">最大400個/分</td>
+            <td>最大800個/分</td>
+          </tr>
+          <tr>
+            <td class="row-label">AIファインチューニング</td>
+            <td>初回のみ</td>
+            <td class="highlight-col">年2回まで</td>
+            <td>無制限</td>
+          </tr>
+          <tr>
+            <td class="row-label">不良種別自動分類</td>
+            <td><span class="dash">—</span></td>
+            <td class="highlight-col"><span class="check"></span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">SmartLine連携</td>
+            <td><span class="dash">—</span></td>
+            <td class="highlight-col"><span class="check"></span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">21 CFR Part 11対応</td>
+            <td><span class="dash">—</span></td>
+            <td class="highlight-col"><span class="dash">—</span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">導入期間の目安</td>
+            <td>3〜4週間</td>
+            <td class="highlight-col">4〜6週間</td>
+            <td>6〜10週間</td>
+          </tr>
+          <tr>
+            <td class="row-label"></td>
+            <td><a href="contact.html" class="btn-outline" style="display:inline-block;padding:10px 20px;font-size:.83rem;">お問い合わせ</a></td>
+            <td class="highlight-col"><a href="contact.html" class="btn-primary" style="display:inline-block;padding:10px 20px;font-size:.83rem;">無料相談する</a></td>
+            <td><a href="contact.html" class="btn-outline" style="display:inline-block;padding:10px 20px;font-size:.83rem;">お問い合わせ</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="pricing-note">※ カメラ・照明・架台の仕様は検査対象ワークにより異なります。事前にサンプルワークをお送りいただき、無料検証テストを実施してから最終見積もりをご提示します。</p>
+    </div>
+
+    <div class="option-grid">
+      <div class="option-card">
+        <p class="option-card-title">マルチ品番対応オプション</p>
+        <p class="option-card-price">¥280,000〜</p>
+        <p class="option-card-desc">品番切り替えを自動認識し、品番ごとに検査レシピを自動ロード。多品種少量生産ラインに最適です。</p>
+      </div>
+      <div class="option-card">
+        <p class="option-card-title">自動排出・仕分け連携</p>
+        <p class="option-card-price">¥450,000〜</p>
+        <p class="option-card-desc">不良品の自動排出機構・仕分けロボットとの制御連携。検査後の人手介在をゼロにします。</p>
+      </div>
+      <div class="option-card">
+        <p class="option-card-title">検査データ長期保管サービス</p>
+        <p class="option-card-price">¥96,000/年〜</p>
+        <p class="option-card-desc">検査画像・判定ログをクラウドに5年間保管。トレーサビリティ要件への対応と監査対応を支援します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       PRODUCT 3 — MaintPro
+  ============================= -->
+  <section class="product-section fade-in" id="maintpro">
+    <div class="product-header">
+      <div>
+        <span class="product-label">MaintPro</span>
+        <h2 class="product-name">予知保全・設備管理クラウド</h2>
+        <p class="product-tagline">振動・温度センサーデータとAI分析で突発停止を未然に防ぐSaaS型保全プラットフォーム</p>
+        <p class="product-desc">
+          MaintPro は、IoTセンサーから収集した設備データをクラウド上でAI分析し、
+          故障の予兆を早期発見するSaaS型サービスです。点検作業のデジタル化・保全履歴の一元管理・
+          部品在庫との連動により、保全部門の業務全体を効率化します。
+          月額課金のSaaS形態で初期投資を最小化でき、スモールスタートが可能です。
+        </p>
+        <ul class="product-features">
+          <li>振動・温度・電流・圧力センサーの同時収集（最大32点/ユニット）</li>
+          <li>FFT解析 ＋ 機械学習による異常スコアリング</li>
+          <li>アラートをメール・SMS・Slackへ自動通知</li>
+          <li>点検チェックリストのモバイルアプリ対応（iOS / Android）</li>
+          <li>保全履歴・作業工数・コストの可視化レポート</li>
+          <li>部品マスタ・在庫連携でMRO調達を効率化</li>
+        </ul>
+      </div>
+      <div class="product-visual" style="background: linear-gradient(135deg, #0d3d2a 0%, #1a6644 100%);">
+        <div class="product-visual-icon">MP</div>
+        <div class="product-visual-label">MaintPro Analytics</div>
+      </div>
+    </div>
+
+    <div class="pricing-wrap">
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th style="width:22%;">項目</th>
+            <th>Starter</th>
+            <th class="highlight-col">
+              <span class="recommended-badge">RECOMMENDED</span>
+              <span class="tier-head-name">Growth</span>
+              <span class="tier-head-sub">最も選ばれるプラン</span>
+            </th>
+            <th>Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">月額費用（税別）</td>
+            <td><span class="tier-price">¥40,000</span><span class="tier-price-note">/月（年払い）</span></td>
+            <td class="highlight-col"><span class="tier-price">¥95,000</span><span class="tier-price-note">/月（年払い）</span></td>
+            <td><span class="tier-price">要見積</span><span class="tier-price-note">規模・拠点数による</span></td>
+          </tr>
+          <tr>
+            <td class="row-label">年額換算（参考）</td>
+            <td>¥480,000/年〜</td>
+            <td class="highlight-col">¥1,140,000/年〜</td>
+            <td>要見積</td>
+          </tr>
+          <tr>
+            <td class="row-label">初期セットアップ費用</td>
+            <td>¥120,000</td>
+            <td class="highlight-col">¥200,000</td>
+            <td>個別見積</td>
+          </tr>
+          <tr>
+            <td class="row-label">センサー監視ポイント数</td>
+            <td>最大20点</td>
+            <td class="highlight-col">最大100点</td>
+            <td>無制限</td>
+          </tr>
+          <tr>
+            <td class="row-label">アカウント（ユーザー数）</td>
+            <td>10ユーザーまで</td>
+            <td class="highlight-col">無制限</td>
+            <td>無制限</td>
+          </tr>
+          <tr>
+            <td class="row-label">AI予兆検知</td>
+            <td>基本スコアリング</td>
+            <td class="highlight-col">高精度AI（独自モデル）</td>
+            <td>カスタムモデル</td>
+          </tr>
+          <tr>
+            <td class="row-label">モバイルアプリ</td>
+            <td><span class="check"></span></td>
+            <td class="highlight-col"><span class="check"></span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">API外部連携</td>
+            <td><span class="dash">—</span></td>
+            <td class="highlight-col"><span class="check"></span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">専任CSサポート</td>
+            <td><span class="dash">—</span></td>
+            <td class="highlight-col"><span class="dash">—</span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">無料トライアル</td>
+            <td>30日間</td>
+            <td class="highlight-col">30日間</td>
+            <td>POC対応</td>
+          </tr>
+          <tr>
+            <td class="row-label"></td>
+            <td><a href="contact.html" class="btn-outline" style="display:inline-block;padding:10px 20px;font-size:.83rem;">トライアル申込</a></td>
+            <td class="highlight-col"><a href="contact.html" class="btn-primary" style="display:inline-block;padding:10px 20px;font-size:.83rem;">無料相談する</a></td>
+            <td><a href="contact.html" class="btn-outline" style="display:inline-block;padding:10px 20px;font-size:.83rem;">お問い合わせ</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="pricing-note">※ MaintProはSaaS型のためハードウェア購入は不要です。センサーユニットはレンタル（¥8,000/点/月）または購入（¥45,000/点〜）を選択できます。<br>※ 月払いの場合は上記金額の1.1倍が適用されます。</p>
+    </div>
+
+    <div class="option-grid">
+      <div class="option-card">
+        <p class="option-card-title">センサーレンタルパック（10点）</p>
+        <p class="option-card-price">¥80,000/月〜</p>
+        <p class="option-card-desc">振動・温度センサー10点セットのレンタル。設置工事費込みでスモールスタートが可能。拡張も随時対応します。</p>
+      </div>
+      <div class="option-card">
+        <p class="option-card-title">現場ヒアリング＆設計支援</p>
+        <p class="option-card-price">¥150,000〜</p>
+        <p class="option-card-desc">NEXSYSエンジニアが現地訪問し、計測ポイント選定から導入計画書作成まで支援。導入後の効果を最大化します。</p>
+      </div>
+      <div class="option-card">
+        <p class="option-card-title">保全コスト削減コンサルティング</p>
+        <p class="option-card-price">¥480,000〜/3ヶ月</p>
+        <p class="option-card-desc">MaintProのデータに基づき、保全計画の見直し・部品調達最適化をNEXSYS保全エキスパートが伴走支援します。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================
+       Comparison Table
+  ============================= -->
+  <section class="comparison-section fade-in" id="comparison">
+    <div class="inner" style="max-width:1120px;margin:0 auto;padding:0 24px;">
+      <p class="sec-label" style="color:rgba(255,255,255,.5);">Product Comparison</p>
+      <h2 class="sec-title">3製品 比較表</h2>
+      <p class="sec-subtitle">目的・課題に合わせて最適な製品を選択してください</p>
+
+      <table class="comparison-table" style="margin-top:40px;">
+        <thead>
+          <tr>
+            <th style="width:22%;text-align:left;padding-left:16px;">比較項目</th>
+            <th>SmartLine</th>
+            <th>QualityEye</th>
+            <th>MaintPro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">主な目的</td>
+            <td>生産ライン自動化・可視化</td>
+            <td>外観検査・品質保証</td>
+            <td>予知保全・設備管理</td>
+          </tr>
+          <tr>
+            <td class="row-label">提供形態</td>
+            <td>オンプレ／クラウド</td>
+            <td>オンプレ（装置型）</td>
+            <td>SaaS（クラウド）</td>
+          </tr>
+          <tr>
+            <td class="row-label">初期費用の目安</td>
+            <td class="prod-price">¥3,800,000〜</td>
+            <td class="prod-price">¥1,500,000〜</td>
+            <td class="prod-price">¥120,000〜</td>
+          </tr>
+          <tr>
+            <td class="row-label">ランニングコスト</td>
+            <td>¥480,000/年〜</td>
+            <td>¥360,000/年〜</td>
+            <td>¥40,000/月〜</td>
+          </tr>
+          <tr>
+            <td class="row-label">導入期間</td>
+            <td>6〜12週間</td>
+            <td>3〜10週間</td>
+            <td>1〜3週間</td>
+          </tr>
+          <tr>
+            <td class="row-label">AI機能</td>
+            <td>予兆検知（Advanced〜）</td>
+            <td>外観異常検出</td>
+            <td>故障スコアリング</td>
+          </tr>
+          <tr>
+            <td class="row-label">モバイル対応</td>
+            <td><span class="check"></span></td>
+            <td><span class="dash">—</span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">API外部連携</td>
+            <td><span class="check"></span></td>
+            <td><span class="check"></span></td>
+            <td><span class="check"></span></td>
+          </tr>
+          <tr>
+            <td class="row-label">他製品との連携</td>
+            <td>QualityEye・MaintPro</td>
+            <td>SmartLine</td>
+            <td>SmartLine</td>
+          </tr>
+          <tr>
+            <td class="row-label">無料トライアル</td>
+            <td><span class="opt">個別相談</span></td>
+            <td><span class="opt">無料検証テスト</span></td>
+            <td><span class="check"></span> 30日間</td>
+          </tr>
+          <tr>
+            <td class="row-label">向いている課題</td>
+            <td>OEE向上・稼働可視化・段取り短縮</td>
+            <td>出荷不良削減・目視検査廃止</td>
+            <td>突発停止防止・保全工数削減</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Purchase Flow -->
+  <section class="purchase-flow fade-in">
+    <div class="inner" style="max-width:1120px;margin:0 auto;padding:0 24px;text-align:center;">
+      <p class="sec-label">Purchase Flow</p>
+      <h2 class="sec-title">ご契約までの流れ</h2>
+      <p class="sec-subtitle">最短4週間でのご契約が可能です</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-num"><span>STEP</span>01</div>
+        <div>
+          <div class="flow-step-label">無料相談・<br>ヒアリング</div>
+          <div class="flow-step-sub">オンライン60分</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num"><span>STEP</span>02</div>
+        <div>
+          <div class="flow-step-label">現地調査・<br>要件定義</div>
+          <div class="flow-step-sub">1〜2週間</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num"><span>STEP</span>03</div>
+        <div>
+          <div class="flow-step-label">お見積もり・<br>提案書提出</div>
+          <div class="flow-step-sub">1週間以内</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num"><span>STEP</span>04</div>
+        <div>
+          <div class="flow-step-label">ご契約・<br>発注</div>
+          <div class="flow-step-sub">合意後随時</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num"><span>STEP</span>05</div>
+        <div>
+          <div class="flow-step-label">導入・<br>立ち上げ</div>
+          <div class="flow-step-sub">製品により異なる</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <div>
+        <p class="cta-banner-title">まずは無料相談から始めてください</p>
+        <p class="cta-banner-sub">課題のヒアリングから概算費用のご提示まで、費用はいただきません。</p>
+      </div>
+      <div class="cta-banner-btns">
+        <a href="contact.html" class="btn-primary">無料相談する</a>
+        <a href="cases.html" class="btn-outline-white">導入事例を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="font-size:1.1rem;">NEXSYS<span>株式会社</span></a>
+        <p class="footer-desc">FA自動化設備・AI検査・予知保全ソリューションで<br>日本の製造現場の競争力を高め続けます。</p>
+      </div>
+      <div class="footer-nav-group">
+        <p class="footer-nav-title">ソリューション</p>
+        <a href="items.html#smartline">SmartLine</a>
+        <a href="items.html#qualityeye">QualityEye</a>
+        <a href="items.html#maintpro">MaintPro</a>
+      </div>
+      <div class="footer-nav-group">
+        <p class="footer-nav-title">会社情報</p>
+        <a href="why.html">スタンス</a>
+        <a href="cases.html">導入事例</a>
+        <a href="blog.html">メディア</a>
+      </div>
+      <div class="footer-nav-group">
+        <p class="footer-nav-title">サポート</p>
+        <a href="flow.html">導入フロー</a>
+        <a href="faq.html">よくある質問</a>
+        <a href="contact.html">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 NEXSYS株式会社. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">サイトマップ</a>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="main.js"></script>
+  <script>
+    // Highlight active jump nav link on scroll
+    const sections = ['smartline','qualityeye','maintpro','comparison'];
+    const pjnLinks = document.querySelectorAll('.pjn-link');
+    const header = document.getElementById('header');
+    const jumpNav = document.querySelector('.product-jumpnav');
+
+    window.addEventListener('scroll', () => {
+      const offset = (header ? header.offsetHeight : 60) + (jumpNav ? jumpNav.offsetHeight : 0) + 20;
+      let current = '';
+      sections.forEach(id => {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= offset) current = id;
+      });
+      pjnLinks.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }, { passive: true });
+  </script>
+</body>
+</html>

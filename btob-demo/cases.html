@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>導入事例 | NEXSYS株式会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== CASES PAGE ===== */
+.cases-section { padding: var(--section-py) 0; }
+
+/* 詳細データボックス */
+.case-detail-box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  background: var(--c-bg);
+  border-radius: var(--r-sm);
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.case-detail-item dt { font-size: .65rem; color: var(--c-text-3); font-weight: 700; margin-bottom: 3px; letter-spacing: .04em; }
+.case-detail-item dd { font-size: .82rem; color: var(--c-navy); font-weight: 700; }
+
+/* ケーススタディ一覧（全カード共通は style.css へ） */
+#casesGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+/* ページャー */
+.pagination { display: flex; gap: 8px; justify-content: center; margin-top: 48px; }
+.page-btn {
+  width: 40px; height: 40px;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .85rem; font-weight: 700;
+  border: 1.5px solid var(--c-border);
+  background: #fff; color: var(--c-text-2);
+  transition: all .15s;
+}
+.page-btn:hover, .page-btn.active { background: var(--c-navy); color: #fff; border-color: var(--c-navy); }
+
+@media (max-width: 1024px) { #casesGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 768px)  { #casesGrid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>製造現場の自動化・AI検査・予知保全はNEXSYSへ</span>
+    <a href="tel:052XXXXXXXX" class="topbar-tel"><span>代表</span>052-XXX-XXXX</a>
+  </div>
+</div>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">NEXSYS</span>
+      <span class="logo-tagline">株式会社</span>
+    </a>
+    <nav>
+      <a href="why.html" class="nav-link">スタンス</a>
+      <a href="items.html" class="nav-link">製品・料金</a>
+      <a href="cases.html" class="nav-link">導入事例</a>
+      <a href="flow.html" class="nav-link">導入フロー</a>
+      <a href="blog.html" class="nav-link">メディア</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a href="contact.html" class="btn btn-outline btn-sm">資料請求</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">無料相談</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav id="mobile-nav">
+  <a href="why.html" class="nav-link">スタンス</a>
+  <a href="items.html" class="nav-link">製品・料金</a>
+  <a href="cases.html" class="nav-link">導入事例</a>
+  <a href="flow.html" class="nav-link">導入フロー</a>
+  <a href="blog.html" class="nav-link">メディア</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <div class="mobile-actions">
+    <a href="contact.html" class="btn btn-primary btn-block">無料相談する</a>
+  </div>
+</nav>
+
+<div class="float-cta">
+  <a href="contact.html" class="float-btn">資料<br>請求</a>
+  <a href="contact.html" class="float-btn float-btn--orange">無料<br>相談</a>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <span class="page-hero-eyebrow">Case Studies</span>
+    <h1>導入事例</h1>
+    <p>業種・課題・導入製品別に、350社以上の実績から検索できます。</p>
+    <div class="breadcrumb">
+      <a href="index.html">TOP</a><span class="breadcrumb-sep">/</span><span>導入事例</span>
+    </div>
+  </div>
+</div>
+
+<section class="cases-section">
+  <div class="container">
+
+    <!-- フィルター -->
+    <div class="filter-row" data-target="casesGrid">
+      <button class="filter-btn active" data-cat="all">すべて</button>
+      <button class="filter-btn" data-cat="auto">自動車・部品</button>
+      <button class="filter-btn" data-cat="elec">電子機器</button>
+      <button class="filter-btn" data-cat="food">食品・飲料</button>
+      <button class="filter-btn" data-cat="pharma">化学・医薬</button>
+      <button class="filter-btn" data-cat="precision">精密機械</button>
+    </div>
+
+    <!-- カードグリッド -->
+    <div id="casesGrid">
+
+      <!-- Case 01 -->
+      <a href="#" class="case-card" data-cat="auto">
+        <div class="case-photo">
+          <span class="case-ribbon">自動車部品</span>
+          【写真】溶接後工程の自動搬送ライン
+        </div>
+        <div class="case-body">
+          <div class="case-category">Automotive</div>
+          <div class="case-title">溶接後の搬送工程を完全自動化し、工数60%削減・投資回収2.3年を達成</div>
+          <div class="case-detail-box">
+            <dl class="case-detail-item"><dt>導入製品</dt><dd>SmartLine G2</dd></dl>
+            <dl class="case-detail-item"><dt>企業規模</dt><dd>従業員320名</dd></dl>
+            <dl class="case-detail-item"><dt>導入期間</dt><dd>3ヶ月</dd></dl>
+          </div>
+          <div class="case-result">
+            <div class="case-result-item"><div class="case-result-num">60%</div><div class="case-result-label">工数削減</div></div>
+            <div class="case-result-item"><div class="case-result-num">2.3年</div><div class="case-result-label">投資回収</div></div>
+          </div>
+          <div><span class="tag tag--blue">SmartLine</span> <span class="tag tag--gray">工数削減</span></div>
+          <br><span class="case-link">事例を読む</span>
+        </div>
+      </a>
+
+      <!-- Case 02 -->
+      <a href="#" class="case-card" data-cat="elec">
+        <div class="case-photo case-photo--b">
+          <span class="case-ribbon">電子機器</span>
+          【写真】AI外観検査装置の導入現場
+        </div>
+        <div class="case-body">
+          <div class="case-category">Electronics</div>
+          <div class="case-title">AI検査装置で不良流出ゼロを達成。検査スピードは従来の5倍に</div>
+          <div class="case-detail-box">
+            <dl class="case-detail-item"><dt>導入製品</dt><dd>QualityEye Pro</dd></dl>
+            <dl class="case-detail-item"><dt>企業規模</dt><dd>従業員820名</dd></dl>
+            <dl class="case-detail-item"><dt>導入期間</dt><dd>2ヶ月</dd></dl>
+          </div>
+          <div class="case-result">
+            <div class="case-result-item"><div class="case-result-num">5x</div><div class="case-result-label">検査スピード</div></div>
+            <div class="case-result-item"><div class="case-result-num">0件</div><div class="case-result-label">不良流出</div></div>
+          </div>
+          <div><span class="tag tag--blue">QualityEye</span> <span class="tag tag--gray">品質向上</span></div>
+          <br><span class="case-link">事例を読む</span>
+        </div>
+      </a>
+
+      <!-- Case 03 -->
+      <a href="#" class="case-card" data-cat="food">
+        <div class="case-photo case-photo--d">
+          <span class="case-ribbon">食品・飲料</span>
+          【写真】食品ライン夜間自動化の様子
+        </div>
+        <div class="case-body">
+          <div class="case-category">Food &amp; Beverage</div>
+          <div class="case-title">夜間無人稼働の実現で月産能力40%増強、年間残業費¥380万削減</div>
+          <div class="case-detail-box">
+            <dl class="case-detail-item"><dt>導入製品</dt><dd>SmartLine Standard</dd></dl>
+            <dl class="case-detail-item"><dt>企業規模</dt><dd>従業員180名</dd></dl>
+            <dl class="case-detail-item"><dt>導入期間</dt><dd>4ヶ月</dd></dl>
+          </div>
+          <div class="case-result">
+            <div class="case-result-item"><div class="case-result-num">40%</div><div class="case-result-label">月産能力増強</div></div>
+            <div class="case-result-item"><div class="case-result-num">¥380万</div><div class="case-result-label">年間費用削減</div></div>
+          </div>
+          <div><span class="tag tag--blue">SmartLine</span> <span class="tag tag--gray">省人化</span></div>
+          <br><span class="case-link">事例を読む</span>
+        </div>
+      </a>
+
+      <!-- Case 04 -->
+      <a href="#" class="case-card" data-cat="pharma">
+        <div class="case-photo">
+          <span class="case-ribbon">化学・医薬</span>
+          【写真】クリーンルーム内自動搬送
+        </div>
+        <div class="case-body">
+          <div class="case-category">Pharma &amp; Chemical</div>
+          <div class="case-title">クリーンルーム対応の無塵搬送ラインを導入。交差汚染リスクをゼロに</div>
+          <div class="case-detail-box">
+            <dl class="case-detail-item"><dt>導入製品</dt><dd>SmartLine Clean</dd></dl>
+            <dl class="case-detail-item"><dt>企業規模</dt><dd>従業員450名</dd></dl>
+            <dl class="case-detail-item"><dt>導入期間</dt><dd>5ヶ月</dd></dl>
+          </div>
+          <div class="case-result">
+            <div class="case-result-item"><div class="case-result-num">0件</div><div class="case-result-label">異物混入事故</div></div>
+            <div class="case-result-item"><div class="case-result-num">35%</div><div class="case-result-label">検査コスト削減</div></div>
+          </div>
+          <div><span class="tag tag--blue">SmartLine</span> <span class="tag tag--gray">品質保証</span></div>
+          <br><span class="case-link">事例を読む</span>
+        </div>
+      </a>
+
+      <!-- Case 05 -->
+      <a href="#" class="case-card" data-cat="precision">
+        <div class="case-photo case-photo--b">
+          <span class="case-ribbon">精密機械</span>
+          【写真】精密部品の外観検査ライン
+        </div>
+        <div class="case-body">
+          <div class="case-category">Precision Machinery</div>
+          <div class="case-title">0.01mm精度の外観検査を自動化。ベテラン技術者依存から脱却し品質を標準化</div>
+          <div class="case-detail-box">
+            <dl class="case-detail-item"><dt>導入製品</dt><dd>QualityEye Ultra</dd></dl>
+            <dl class="case-detail-item"><dt>企業規模</dt><dd>従業員95名</dd></dl>
+            <dl class="case-detail-item"><dt>導入期間</dt><dd>6週間</dd></dl>
+          </div>
+          <div class="case-result">
+            <div class="case-result-item"><div class="case-result-num">99.97%</div><div class="case-result-label">検出精度</div></div>
+            <div class="case-result-item"><div class="case-result-num">52%</div><div class="case-result-label">検査コスト削減</div></div>
+          </div>
+          <div><span class="tag tag--blue">QualityEye</span> <span class="tag tag--gray">標準化</span></div>
+          <br><span class="case-link">事例を読む</span>
+        </div>
+      </a>
+
+      <!-- Case 06 -->
+      <a href="#" class="case-card" data-cat="auto">
+        <div class="case-photo case-photo--d">
+          <span class="case-ribbon">自動車部品</span>
+          【写真】プレス加工後の自動仕分けライン
+        </div>
+        <div class="case-body">
+          <div class="case-category">Automotive</div>
+          <div class="case-title">プレス加工品の自動仕分けを導入。仕分けミスを撲滅し、出荷リードタイムを30%短縮</div>
+          <div class="case-detail-box">
+            <dl class="case-detail-item"><dt>導入製品</dt><dd>SmartLine + QualityEye</dd></dl>
+            <dl class="case-detail-item"><dt>企業規模</dt><dd>従業員240名</dd></dl>
+            <dl class="case-detail-item"><dt>導入期間</dt><dd>4ヶ月</dd></dl>
+          </div>
+          <div class="case-result">
+            <div class="case-result-item"><div class="case-result-num">0件</div><div class="case-result-label">仕分けミス</div></div>
+            <div class="case-result-item"><div class="case-result-num">30%</div><div class="case-result-label">リードタイム短縮</div></div>
+          </div>
+          <div><span class="tag tag--blue">複合導入</span> <span class="tag tag--gray">物流改善</span></div>
+          <br><span class="case-link">事例を読む</span>
+        </div>
+      </a>
+
+      <!-- Case 07 -->
+      <a href="#" class="case-card" data-cat="food">
+        <div class="case-photo">
+          <span class="case-ribbon">食品・飲料</span>
+          【写真】飲料充填ライン検査装置
+        </div>
+        <div class="case-body">
+          <div class="case-category">Food &amp; Beverage</div>
+          <div class="case-title">飲料充填後の異物・液面検査を自動化。年間リコールリスクを大幅低減</div>
+          <div class="case-detail-box">
+            <dl class="case-detail-item"><dt>導入製品</dt><dd>QualityEye Standard</dd></dl>
+            <dl class="case-detail-item"><dt>企業規模</dt><dd>従業員560名</dd></dl>
+            <dl class="case-detail-item"><dt>導入期間</dt><dd>8週間</dd></dl>
+          </div>
+          <div class="case-result">
+            <div class="case-result-item"><div class="case-result-num">¥600万</div><div class="case-result-label">リスク回避コスト</div></div>
+            <div class="case-result-item"><div class="case-result-num">1.8年</div><div class="case-result-label">投資回収</div></div>
+          </div>
+          <div><span class="tag tag--blue">QualityEye</span> <span class="tag tag--gray">リスク管理</span></div>
+          <br><span class="case-link">事例を読む</span>
+        </div>
+      </a>
+
+      <!-- Case 08 -->
+      <a href="#" class="case-card" data-cat="elec">
+        <div class="case-photo case-photo--b">
+          <span class="case-ribbon">電子機器</span>
+          【写真】基板実装後の検査工程
+        </div>
+        <div class="case-body">
+          <div class="case-category">Electronics</div>
+          <div class="case-title">基板実装後の半田検査を自動化。人員3名を設計部門へ配置転換し生産性向上</div>
+          <div class="case-detail-box">
+            <dl class="case-detail-item"><dt>導入製品</dt><dd>QualityEye PCB</dd></dl>
+            <dl class="case-detail-item"><dt>企業規模</dt><dd>従業員120名</dd></dl>
+            <dl class="case-detail-item"><dt>導入期間</dt><dd>6週間</dd></dl>
+          </div>
+          <div class="case-result">
+            <div class="case-result-item"><div class="case-result-num">3名</div><div class="case-result-label">戦略部門へ配置転換</div></div>
+            <div class="case-result-item"><div class="case-result-num">48%</div><div class="case-result-label">検査コスト削減</div></div>
+          </div>
+          <div><span class="tag tag--blue">QualityEye</span> <span class="tag tag--gray">人材活用</span></div>
+          <br><span class="case-link">事例を読む</span>
+        </div>
+      </a>
+
+      <!-- Case 09 -->
+      <a href="#" class="case-card" data-cat="precision">
+        <div class="case-photo case-photo--d">
+          <span class="case-ribbon">精密機械</span>
+          【写真】予防保全サービス導入後の工場
+        </div>
+        <div class="case-body">
+          <div class="case-category">Precision Machinery</div>
+          <div class="case-title">MaintPro導入で突発停止ゼロを実現。年間の機会損失コストを¥1,200万削減</div>
+          <div class="case-detail-box">
+            <dl class="case-detail-item"><dt>導入製品</dt><dd>MaintPro Premium</dd></dl>
+            <dl class="case-detail-item"><dt>企業規模</dt><dd>従業員680名</dd></dl>
+            <dl class="case-detail-item"><dt>導入期間</dt><dd>継続中</dd></dl>
+          </div>
+          <div class="case-result">
+            <div class="case-result-item"><div class="case-result-num">0件</div><div class="case-result-label">突発停止（12ヶ月）</div></div>
+            <div class="case-result-item"><div class="case-result-num">¥1,200万</div><div class="case-result-label">機会損失削減</div></div>
+          </div>
+          <div><span class="tag tag--blue">MaintPro</span> <span class="tag tag--gray">稼働率向上</span></div>
+          <br><span class="case-link">事例を読む</span>
+        </div>
+      </a>
+
+    </div><!-- /casesGrid -->
+
+    <div class="pagination">
+      <a href="#" class="page-btn active">1</a>
+      <a href="#" class="page-btn">2</a>
+      <a href="#" class="page-btn">3</a>
+      <a href="#" class="page-btn" style="width:auto;padding:0 16px;">次へ →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="cta-label">Consult Now</span>
+      <h2 class="cta-title">同じ課題をお持ちですか？<br>事例に近い内容でご相談ください。</h2>
+      <p class="cta-desc">「自社に当てはまるか確認したい」という段階でも構いません。<br>無料で専任エンジニアがヒアリングします。</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-primary btn-lg">無料で相談する</a>
+        <a href="contact.html" class="btn btn-outline-white btn-lg">資料を請求する</a>
+      </div>
+      <div class="cta-tel">お電話：<strong>03-XXXX-XXXX</strong>（平日 9:00〜18:00）</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <span class="footer-logo-mark">NEXSYS</span>
+        <p class="footer-tagline">製造業向け自動化設備・生産管理システム</p>
+        <span class="footer-tel">03-XXXX-XXXX</span>
+        <span class="footer-hours">平日 9:00〜18:00（土日祝休）</span>
+      </div>
+      <div class="footer-col"><h4>製品・サービス</h4><ul>
+        <li><a href="items.html#smartline">SmartLine 自動搬送システム</a></li>
+        <li><a href="items.html#qualityeye">QualityEye 精密検査装置</a></li>
+        <li><a href="items.html#maintpro">MaintPro 保守サービス</a></li>
+        <li><a href="items.html#pricing">料金プラン比較</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="why.html">私たちのスタンス</a></li>
+        <li><a href="cases.html">導入事例</a></li>
+        <li><a href="flow.html">導入フロー</a></li>
+        <li><a href="faq.html">よくある質問</a></li>
+        <li><a href="blog.html">メディア</a></li>
+        <li><a href="news.html">お知らせ</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="contact.html">お問い合わせ・見積り依頼</a></li>
+        <li><a href="contact.html">資料請求</a></li>
+        <li><a href="contact.html">導入相談（無料）</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 NEXSYS Corporation. All Rights Reserved.</div>
+      <div class="footer-links"><a href="#">プライバシーポリシー</a><a href="#">サイトマップ</a></div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>私たちのスタンス | NEXSYS株式会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== STANCE / WHY PAGE ===== */
+
+/* 統計バー */
+.stats-bar { background: var(--c-navy); padding: 52px 0; }
+.stats-bar-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+.stat-num { font-size: 2.8rem; font-weight: 800; color: #fff; line-height: 1; }
+.stat-unit { font-size: 1.1rem; color: rgba(255,255,255,.7); font-weight: 600; }
+.stat-label { font-size: .75rem; color: rgba(255,255,255,.45); margin-top: 8px; letter-spacing: .04em; }
+.stat-divider { width: 1px; background: rgba(255,255,255,.1); height: 60px; margin: auto; }
+
+/* 理由ブロック */
+.reason-block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  padding: 72px 0;
+  border-bottom: 1px solid var(--c-border);
+}
+.reason-block:last-child { border-bottom: none; }
+.reason-block.reverse { direction: rtl; }
+.reason-block.reverse > * { direction: ltr; }
+.reason-photo {
+  aspect-ratio: 4/3;
+  background: var(--c-bg);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-text-3);
+  font-size: .8rem;
+  text-align: center;
+  padding: 24px;
+  border: 1px solid var(--c-border);
+}
+.reason-photo--b { background: var(--c-blue-light); }
+.reason-num {
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--c-blue-light);
+  line-height: 1;
+  margin-bottom: 8px;
+  font-variant-numeric: tabular-nums;
+}
+.reason-title { font-size: 1.5rem; font-weight: 700; color: var(--c-navy); margin-bottom: 14px; line-height: 1.4; }
+.reason-desc { font-size: .92rem; color: var(--c-text-2); margin-bottom: 24px; line-height: 1.9; }
+
+/* 声（テスティモニアル） */
+.voice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.voice-card {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  padding: 28px;
+}
+.voice-rating { color: var(--c-orange); font-size: .9rem; letter-spacing: .1em; margin-bottom: 14px; }
+.voice-text { font-size: .88rem; color: var(--c-text); line-height: 1.85; margin-bottom: 16px; }
+.voice-from { font-size: .75rem; color: var(--c-text-3); font-weight: 600; border-top: 1px solid var(--c-border); padding-top: 12px; }
+
+/* 会社概要テーブル */
+.company-table-wrap { background: #fff; border: 1px solid var(--c-border); border-radius: var(--r-md); overflow: hidden; }
+.company-table { width: 100%; border-collapse: collapse; }
+.company-table th {
+  width: 180px;
+  background: var(--c-bg);
+  color: var(--c-text);
+  font-size: .85rem;
+  font-weight: 700;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--c-border);
+  vertical-align: top;
+  text-align: left;
+}
+.company-table td {
+  font-size: .88rem;
+  color: var(--c-text);
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--c-border);
+  line-height: 1.7;
+}
+.company-table tr:last-child th,
+.company-table tr:last-child td { border-bottom: none; }
+
+/* ミッション・ビジョン */
+.mv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.mv-card {
+  border-radius: var(--r-md);
+  padding: 40px 36px;
+  border: 1px solid var(--c-border);
+}
+.mv-card--mission { background: var(--c-navy); }
+.mv-card--vision { background: var(--c-bg); }
+.mv-en {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: block;
+}
+.mv-card--mission .mv-en { color: rgba(255,255,255,.4); }
+.mv-card--vision .mv-en { color: var(--c-blue); }
+.mv-text { font-size: 1.4rem; font-weight: 700; line-height: 1.5; margin-bottom: 14px; }
+.mv-card--mission .mv-text { color: #fff; }
+.mv-card--vision .mv-text { color: var(--c-navy); }
+.mv-desc { font-size: .88rem; line-height: 1.85; }
+.mv-card--mission .mv-desc { color: rgba(255,255,255,.65); }
+.mv-card--vision .mv-desc { color: var(--c-text-2); }
+
+/* バリュー */
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.value-card {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  padding: 28px 24px;
+  border-top: 3px solid var(--c-blue);
+}
+.value-num { font-size: 1.8rem; font-weight: 800; color: var(--c-blue-light); line-height: 1; margin-bottom: 8px; }
+.value-title { font-size: .97rem; font-weight: 700; color: var(--c-navy); margin-bottom: 10px; }
+.value-desc { font-size: .83rem; color: var(--c-text-2); line-height: 1.8; }
+
+/* メンバー */
+.members-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.member-card {
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.member-photo {
+  height: 180px;
+  background: var(--c-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75rem;
+  color: var(--c-text-3);
+  text-align: center;
+  padding: 16px;
+}
+.member-photo--b { background: var(--c-blue-light); }
+.member-body { padding: 18px; }
+.member-name { font-size: .97rem; font-weight: 700; color: var(--c-navy); margin-bottom: 4px; }
+.member-role {
+  display: inline-block;
+  font-size: .65rem;
+  font-weight: 700;
+  color: var(--c-blue);
+  background: var(--c-blue-light);
+  padding: 2px 10px;
+  border-radius: var(--r-sm);
+  margin-bottom: 10px;
+  letter-spacing: .04em;
+}
+.member-msg { font-size: .78rem; color: var(--c-text-2); line-height: 1.7; }
+
+@media (max-width: 1024px) {
+  .stats-bar-grid { grid-template-columns: repeat(2, 1fr); }
+  .reason-block { grid-template-columns: 1fr; gap: 32px; }
+  .reason-block.reverse { direction: ltr; }
+  .reason-photo { aspect-ratio: 16/9; }
+  .voice-grid { grid-template-columns: 1fr 1fr; }
+  .mv-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: repeat(2, 1fr); }
+  .members-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .voice-grid { grid-template-columns: 1fr; }
+  .values-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>製造現場の自動化・AI検査・予知保全はNEXSYSへ</span>
+    <a href="tel:052XXXXXXXX" class="topbar-tel"><span>代表</span>052-XXX-XXXX</a>
+  </div>
+</div>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">NEXSYS</span>
+      <span class="logo-tagline">株式会社</span>
+    </a>
+    <nav>
+      <a href="why.html" class="nav-link">スタンス</a>
+      <a href="items.html" class="nav-link">製品・料金</a>
+      <a href="cases.html" class="nav-link">導入事例</a>
+      <a href="flow.html" class="nav-link">導入フロー</a>
+      <a href="blog.html" class="nav-link">メディア</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a href="contact.html" class="btn btn-outline btn-sm">資料請求</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">無料相談</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav id="mobile-nav">
+  <a href="why.html" class="nav-link">スタンス</a>
+  <a href="items.html" class="nav-link">製品・料金</a>
+  <a href="cases.html" class="nav-link">導入事例</a>
+  <a href="flow.html" class="nav-link">導入フロー</a>
+  <a href="blog.html" class="nav-link">メディア</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <div class="mobile-actions">
+    <a href="contact.html" class="btn btn-primary btn-block">無料相談する</a>
+  </div>
+</nav>
+
+<div class="float-cta">
+  <a href="contact.html" class="float-btn">資料<br>請求</a>
+  <a href="contact.html" class="float-btn float-btn--orange">無料<br>相談</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <span class="page-hero-eyebrow">Our Stance</span>
+    <h1>私たちのスタンス</h1>
+    <p>なぜNEXSYSが選ばれるのか。数字と哲学でお伝えします。</p>
+    <div class="breadcrumb">
+      <a href="index.html">TOP</a>
+      <span class="breadcrumb-sep">/</span>
+      <span>私たちのスタンス</span>
+    </div>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<section class="stats-bar">
+  <div class="container">
+    <div class="stats-bar-grid">
+      <div>
+        <div class="stat-num">350<span class="stat-unit">社+</span></div>
+        <div class="stat-label">累計導入実績</div>
+      </div>
+      <div>
+        <div class="stat-num">28<span class="stat-unit">%</span></div>
+        <div class="stat-label">平均コスト削減率</div>
+      </div>
+      <div>
+        <div class="stat-num">97<span class="stat-unit">%</span></div>
+        <div class="stat-label">顧客継続率</div>
+      </div>
+      <div>
+        <div class="stat-num">15<span class="stat-unit">年</span></div>
+        <div class="stat-label">業界経験年数</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 選ばれる理由（3つ）-->
+<section class="section">
+  <div class="container">
+    <div class="sec-header center">
+      <span class="sec-eyebrow">Why Choose NEXSYS</span>
+      <h2 class="sec-title">NEXSYSが<em>選ばれる理由</em></h2>
+      <p class="sec-desc">技術力だけではなく、現場に根ざした姿勢と透明性のある取引が、長期的なパートナーシップを生んでいます。</p>
+    </div>
+
+    <!-- Reason 01 -->
+    <div class="reason-block fade-in">
+      <div class="reason-photo">
+        【写真】現場ヒアリング・エンジニアが工場で打ち合わせをする様子<br>
+        ※実写真に差し替えてください
+      </div>
+      <div>
+        <div class="reason-num">01</div>
+        <div class="reason-title">提案前に、現場を徹底的に理解する</div>
+        <p class="reason-desc">
+          多くのメーカーは製品ありきで提案します。NEXSYSは逆です。
+          まず専任エンジニアが貴社の生産ラインを現地調査し、ボトルネックを数値で把握した上で、
+          最適な解決策を設計します。「とりあえずこれを入れれば改善します」という提案は一切行いません。
+        </p>
+        <ul class="check-list">
+          <li>現地調査・ライン診断を完全無料で実施</li>
+          <li>問題の根本原因分析（RCA）レポートを提出</li>
+          <li>複数プランの費用対効果を比較提示</li>
+          <li>現場オペレーターへのヒアリングも実施</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Reason 02 -->
+    <div class="reason-block reverse fade-in">
+      <div class="reason-photo reason-photo--b">
+        【写真】導入後のKPIモニタリング・ダッシュボード画面<br>
+        ※実写真に差し替えてください
+      </div>
+      <div>
+        <div class="reason-num">02</div>
+        <div class="reason-title">成果にコミットし、数値で報告する</div>
+        <p class="reason-desc">
+          導入前に達成目標KPIを契約書に明記します。導入後は毎月の稼働データをレポートとして提出し、
+          目標値との乖離があれば無償で改善策を講じます。「効果があった気がする」ではなく、
+          数字で証明できる改善を追求します。
+        </p>
+        <ul class="check-list">
+          <li>目標KPIを事前に数値化・契約書に明記</li>
+          <li>月次稼働レポートを自動配信</li>
+          <li>目標未達時は無償チューニング対応</li>
+          <li>3年間の投資回収シミュレーションを事前提示</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Reason 03 -->
+    <div class="reason-block fade-in">
+      <div class="reason-photo">
+        【写真】長期保守・アフターサポートの様子<br>
+        ※実写真に差し替えてください
+      </div>
+      <div>
+        <div class="reason-num">03</div>
+        <div class="reason-title">導入後5年先まで、伴走するパートナーとして</div>
+        <p class="reason-desc">
+          納品後に連絡が取れなくなる「売り逃げ型」メーカーとは異なり、NEXSYSは長期的な設備稼働を
+          最大化するパートナーです。定期点検・リモート診断・部品供給・ソフトウェアアップデートを
+          含む包括的な保守体制を構築しています。
+        </p>
+        <ul class="check-list">
+          <li>24時間リモート監視システムを標準搭載</li>
+          <li>故障予知アラートで予防保全を実現</li>
+          <li>部品供給を最低10年間保証</li>
+          <li>専任担当エンジニアを常時アサイン</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 導入企業の声 -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="sec-header center">
+      <span class="sec-eyebrow">Client Voice</span>
+      <h2 class="sec-title">導入企業の<em>担当者様の声</em></h2>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-card fade-in">
+        <div class="voice-rating">★★★★★</div>
+        <p class="voice-text">「他社製品も検討しましたが、NEXSYSだけが現場診断を事前に行った上で提案してくれました。導入後の稼働率が想定を超え、投資回収も計画より6ヶ月早まりました。」</p>
+        <div class="voice-from">大手自動車部品メーカー / 生産技術部 課長</div>
+      </div>
+      <div class="voice-card fade-in fade-in-delay-1">
+        <div class="voice-rating">★★★★★</div>
+        <p class="voice-text">「月次レポートで数字が見えるので、経営層への報告が格段に楽になりました。導入前後のコスト比較が明確で、追加投資の稟議も通しやすくなっています。」</p>
+        <div class="voice-from">食品加工メーカー / 製造部 部長</div>
+      </div>
+      <div class="voice-card fade-in fade-in-delay-2">
+        <div class="voice-rating">★★★★★</div>
+        <p class="voice-text">「深夜に機器の異常を検知して翌朝には対応策の連絡がきた時は驚きました。リモート監視の安心感は他では得られない価値だと感じています。」</p>
+        <div class="voice-from">精密機械メーカー / 工場長</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ミッション・ビジョン -->
+<section class="section">
+  <div class="container">
+    <div class="sec-header center">
+      <span class="sec-eyebrow">Mission &amp; Vision</span>
+      <h2 class="sec-title">経営哲学</h2>
+    </div>
+    <div class="mv-grid">
+      <div class="mv-card mv-card--mission fade-in">
+        <span class="mv-en">Mission</span>
+        <div class="mv-text">日本の製造業の生産性を、技術の力で世界水準へ引き上げる</div>
+        <p class="mv-desc">NEXSYSの存在意義は、製品を売ることではありません。お客様の現場が確実に良くなること。その成果が日本の製造業全体の競争力向上につながると信じて、事業を運営しています。</p>
+      </div>
+      <div class="mv-card mv-card--vision fade-in fade-in-delay-1">
+        <span class="mv-en">Vision</span>
+        <div class="mv-text">すべての製造現場に、最適な自動化を届けるインフラになる</div>
+        <p class="mv-desc">大企業だけでなく、中小製造業にも本物の自動化技術を届けることが私たちの目指す姿です。導入のハードルを下げ、あらゆる規模の工場が競争力を持てる社会を実現します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- バリュー -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="sec-header center">
+      <span class="sec-eyebrow">Core Values</span>
+      <h2 class="sec-title">私たちが大切にする<em>価値観</em></h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card fade-in">
+        <div class="value-num">01</div>
+        <div class="value-title">誠実さよりも、正直さ</div>
+        <p class="value-desc">耳当たりのいい言葉より、正直な数値と事実をお伝えします。「難しい」「効果が出ない可能性がある」もきちんと伝える文化を大切にしています。</p>
+      </div>
+      <div class="value-card fade-in fade-in-delay-1">
+        <div class="value-num">02</div>
+        <div class="value-title">現場ファースト</div>
+        <p class="value-desc">最終的に設備を使うのは現場のオペレーターです。デザインより使いやすさ、機能より信頼性を優先します。現場の声なき声を拾う仕組みを常に持ちます。</p>
+      </div>
+      <div class="value-card fade-in fade-in-delay-2">
+        <div class="value-num">03</div>
+        <div class="value-title">継続的な改善文化</div>
+        <p class="value-desc">納品がゴールではありません。稼働データを分析し、改善提案を自発的に行い続けます。お客様の工場が半年後も1年後も良くなり続けることが私たちの評価基準です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 会社概要 -->
+<section class="section">
+  <div class="container" style="max-width:860px;">
+    <div class="sec-header">
+      <span class="sec-eyebrow">Company</span>
+      <h2 class="sec-title">会社概要</h2>
+    </div>
+    <div class="company-table-wrap">
+      <table class="company-table">
+        <tr><th>会社名</th><td>ネクシス株式会社（NEXSYS Corporation）</td></tr>
+        <tr><th>設立</th><td>2010年4月</td></tr>
+        <tr><th>代表取締役</th><td>山田 一郎</td></tr>
+        <tr><th>資本金</th><td>1億円</td></tr>
+        <tr><th>従業員数</th><td>142名（2025年4月現在）</td></tr>
+        <tr><th>事業内容</th><td>製造業向け自動搬送システム設計・製造・据付、AI外観検査装置の開発・販売、設備保守・予防保全サービス</td></tr>
+        <tr><th>主要取引先</th><td>自動車部品メーカー、電子機器メーカー、食品・飲料メーカー、精密機械メーカー（各大手〜中堅企業）</td></tr>
+        <tr><th>所在地</th><td>〒XXX-XXXX 東京都〇〇区〇〇〇X-X-X</td></tr>
+        <tr><th>連絡先</th><td>03-XXXX-XXXX（平日 9:00〜18:00）</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="cta-label">Free Consultation</span>
+      <h2 class="cta-title">まず現場の課題を<br>ご相談ください。</h2>
+      <p class="cta-desc">初回相談・現場診断は完全無料です。専任エンジニアが対応します。</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-primary btn-lg">無料で相談する</a>
+        <a href="contact.html" class="btn btn-outline-white btn-lg">資料を請求する</a>
+      </div>
+      <div class="cta-tel">お電話：<strong>03-XXXX-XXXX</strong>（平日 9:00〜18:00）</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <span class="footer-logo-mark">NEXSYS</span>
+        <p class="footer-tagline">製造業向け自動化設備・生産管理システム</p>
+        <span class="footer-tel">03-XXXX-XXXX</span>
+        <span class="footer-hours">平日 9:00〜18:00（土日祝休）</span>
+      </div>
+      <div class="footer-col">
+        <h4>製品・サービス</h4>
+        <ul>
+          <li><a href="items.html#smartline">SmartLine 自動搬送システム</a></li>
+          <li><a href="items.html#qualityeye">QualityEye 精密検査装置</a></li>
+          <li><a href="items.html#maintpro">MaintPro 保守サービス</a></li>
+          <li><a href="items.html#pricing">料金プラン比較</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="why.html">私たちのスタンス</a></li>
+          <li><a href="cases.html">導入事例</a></li>
+          <li><a href="flow.html">導入フロー</a></li>
+          <li><a href="faq.html">よくある質問</a></li>
+          <li><a href="blog.html">メディア</a></li>
+          <li><a href="news.html">お知らせ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">お問い合わせ・見積り依頼</a></li>
+          <li><a href="contact.html">資料請求</a></li>
+          <li><a href="contact.html">導入相談（無料）</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 NEXSYS Corporation. All Rights Reserved.</div>
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">サイトマップ</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

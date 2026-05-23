@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | NEXSYS株式会社</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ── Layout ── */
+    .contact-layout {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 64px 24px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 56px;
+      align-items: start;
+    }
+
+    /* ── Form ── */
+    .contact-form-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      margin: 0 0 6px;
+    }
+    .contact-form-desc {
+      font-size: .88rem;
+      color: #555;
+      line-height: 1.7;
+      margin: 0 0 32px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: .83rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      margin-bottom: 6px;
+    }
+    .form-label .required {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      color: #fff;
+      background: var(--c-orange);
+      padding: 1px 5px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .form-label .optional {
+      display: inline-block;
+      font-size: .65rem;
+      font-weight: 700;
+      color: #888;
+      background: #eee;
+      padding: 1px 5px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      border: 1px solid var(--c-border);
+      background: #fff;
+      font-family: inherit;
+      font-size: .9rem;
+      color: #333;
+      padding: 10px 14px;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+      box-sizing: border-box;
+    }
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--c-blue);
+      box-shadow: 0 0 0 3px rgba(124,91,58,.15);
+    }
+    .form-select-wrap {
+      position: relative;
+    }
+    .form-select-wrap::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px; height: 8px;
+      border-right: 2px solid var(--c-navy);
+      border-bottom: 2px solid var(--c-navy);
+      transform: translateY(-65%) rotate(45deg);
+      pointer-events: none;
+    }
+    .form-textarea { resize: vertical; min-height: 140px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .form-note {
+      font-size: .78rem;
+      color: #888;
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+    .form-check-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .form-check input[type="checkbox"] {
+      width: 16px; height: 16px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--c-blue);
+    }
+    .form-check-label {
+      font-size: .88rem;
+      color: #333;
+      line-height: 1.5;
+    }
+    .form-privacy {
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+      padding: 16px;
+      font-size: .8rem;
+      color: #555;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .form-privacy a { color: var(--c-blue); }
+    .form-submit-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .form-submit-wrap .btn-primary {
+      padding: 14px 40px;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+    }
+    .form-submit-note {
+      font-size: .78rem;
+      color: #888;
+      line-height: 1.5;
+    }
+
+    /* ── Sidebar ── */
+    .contact-sidebar { display: flex; flex-direction: column; gap: 0; }
+    .contact-info-block {
+      border: 1px solid var(--c-border);
+      border-bottom: none;
+      background: #fff;
+    }
+    .contact-info-block:last-child { border-bottom: 1px solid var(--c-border); }
+    .contact-info-block-title {
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: #fff;
+      background: var(--c-navy);
+      padding: 10px 16px;
+    }
+    .contact-info-block-body {
+      padding: 20px 16px;
+    }
+    .contact-tel {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      letter-spacing: .02em;
+      margin: 0 0 4px;
+    }
+    .contact-tel-note {
+      font-size: .75rem;
+      color: #777;
+      margin: 0 0 16px;
+    }
+    .contact-hours {
+      font-size: .83rem;
+      color: #444;
+      line-height: 1.8;
+    }
+    .contact-email {
+      font-size: .9rem;
+      font-weight: 700;
+      color: var(--c-blue);
+      word-break: break-all;
+      margin: 0 0 8px;
+    }
+    .contact-address {
+      font-size: .83rem;
+      color: #444;
+      line-height: 1.8;
+    }
+    .contact-cta-card {
+      background: var(--c-navy);
+      padding: 24px 16px;
+      margin-top: 24px;
+    }
+    .contact-cta-card-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 8px;
+      line-height: 1.5;
+    }
+    .contact-cta-card-desc {
+      font-size: .78rem;
+      color: rgba(255,255,255,.7);
+      line-height: 1.6;
+      margin: 0 0 16px;
+    }
+    .response-badge {
+      display: inline-block;
+      background: var(--c-orange);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      letter-spacing: .05em;
+      margin-bottom: 12px;
+    }
+
+    /* ── Thank you state (hidden by default) ── */
+    .form-thankyou {
+      display: none;
+      text-align: center;
+      padding: 64px 24px;
+    }
+    .form-thankyou.visible { display: block; }
+    .form-thankyou-icon {
+      width: 64px; height: 64px;
+      background: var(--c-blue);
+      margin: 0 auto 20px;
+      clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 14%, 80% 0%, 43% 62%);
+    }
+    .form-thankyou-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--c-navy);
+      margin: 0 0 12px;
+    }
+    .form-thankyou-desc {
+      font-size: .9rem;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 1024px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .form-row { grid-template-columns: 1fr; }
+      .form-submit-wrap { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span>製造現場の自動化・AI検査・予知保全はNEXSYSへ</span>
+    <a href="tel:052XXXXXXXX" class="topbar-tel"><span>代表</span>052-XXX-XXXX</a>
+  </div>
+</div>
+
+<header id="header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">NEXSYS</span>
+      <span class="logo-tagline">株式会社</span>
+    </a>
+    <nav>
+      <a href="why.html" class="nav-link">スタンス</a>
+      <a href="items.html" class="nav-link">製品・料金</a>
+      <a href="cases.html" class="nav-link">導入事例</a>
+      <a href="flow.html" class="nav-link">導入フロー</a>
+      <a href="blog.html" class="nav-link">メディア</a>
+      <a href="faq.html" class="nav-link">FAQ</a>
+    </nav>
+    <div class="header-actions">
+      <a href="contact.html" class="btn btn-outline btn-sm">資料請求</a>
+      <a href="contact.html" class="btn btn-primary btn-sm">無料相談</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav id="mobile-nav">
+  <a href="why.html" class="nav-link">スタンス</a>
+  <a href="items.html" class="nav-link">製品・料金</a>
+  <a href="cases.html" class="nav-link">導入事例</a>
+  <a href="flow.html" class="nav-link">導入フロー</a>
+  <a href="blog.html" class="nav-link">メディア</a>
+  <a href="faq.html" class="nav-link">FAQ</a>
+  <div class="mobile-actions">
+    <a href="contact.html" class="btn btn-primary btn-block">無料相談する</a>
+  </div>
+</nav>
+
+<div class="float-cta">
+  <a href="contact.html" class="float-btn">資料<br>請求</a>
+  <a href="contact.html" class="float-btn float-btn--orange">無料<br>相談</a>
+</div>
+
+<!-- Page Hero -->
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="page-hero-label">Contact</p>
+      <h1 class="page-hero-title">お問い合わせ</h1>
+      <p class="page-hero-desc">製品のご質問・資料請求・無料相談のご依頼はこちらからどうぞ。<br>通常1営業日以内にご連絡します。</p>
+    </div>
+  </section>
+
+  <!-- Contact Layout -->
+  <div class="contact-layout">
+
+    <!-- Form -->
+    <main>
+      <h2 class="contact-form-title">お問い合わせフォーム</h2>
+      <p class="contact-form-desc">
+        以下のフォームにご記入ください。内容を確認の上、担当者よりご連絡いたします。<br>
+        お急ぎの場合はお電話（052-XXX-XXXX）でもご対応しております。
+      </p>
+
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="lastName">姓<span class="required">必須</span></label>
+            <input class="form-input" type="text" id="lastName" name="lastName" placeholder="山田" autocomplete="family-name">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="firstName">名<span class="required">必須</span></label>
+            <input class="form-input" type="text" id="firstName" name="firstName" placeholder="太郎" autocomplete="given-name">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="company">会社名<span class="required">必須</span></label>
+          <input class="form-input" type="text" id="company" name="company" placeholder="株式会社○○製作所" autocomplete="organization">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="dept">部署名<span class="optional">任意</span></label>
+            <input class="form-input" type="text" id="dept" name="dept" placeholder="製造部 生産技術課">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="position">役職<span class="optional">任意</span></label>
+            <input class="form-input" type="text" id="position" name="position" placeholder="課長">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">メールアドレス<span class="required">必須</span></label>
+          <input class="form-input" type="email" id="email" name="email" placeholder="yamada@example.co.jp" autocomplete="email">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="tel">電話番号<span class="optional">任意</span></label>
+          <input class="form-input" type="tel" id="tel" name="tel" placeholder="052-XXX-XXXX" autocomplete="tel">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="employees">従業員数<span class="required">必須</span></label>
+          <div class="form-select-wrap">
+            <select class="form-select" id="employees" name="employees">
+              <option value="" disabled selected>選択してください</option>
+              <option value="lt50">50名未満</option>
+              <option value="50-199">50〜199名</option>
+              <option value="200-499">200〜499名</option>
+              <option value="500-999">500〜999名</option>
+              <option value="gte1000">1,000名以上</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">ご興味のある製品・サービス<span class="required">必須</span></label>
+          <div class="form-check-group">
+            <label class="form-check">
+              <input type="checkbox" name="product" value="smartline">
+              <span class="form-check-label">SmartLine（FA自動化ライン制御システム）</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" name="product" value="qualityeye">
+              <span class="form-check-label">QualityEye（AI外観検査システム）</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" name="product" value="maintpro">
+              <span class="form-check-label">MaintPro（予知保全・設備管理クラウド）</span>
+            </label>
+            <label class="form-check">
+              <input type="checkbox" name="product" value="other">
+              <span class="form-check-label">その他・まだ決まっていない</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inquiry_type">お問い合わせ種別<span class="required">必須</span></label>
+          <div class="form-select-wrap">
+            <select class="form-select" id="inquiry_type" name="inquiry_type">
+              <option value="" disabled selected>選択してください</option>
+              <option value="consult">無料相談を希望する</option>
+              <option value="catalog">資料・カタログを請求する</option>
+              <option value="demo">デモ・検証テストを希望する</option>
+              <option value="quote">見積もりを依頼する</option>
+              <option value="question">製品仕様について質問したい</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="budget">ご予算感<span class="optional">任意</span></label>
+          <div class="form-select-wrap">
+            <select class="form-select" id="budget" name="budget">
+              <option value="" selected>選択してください（任意）</option>
+              <option value="lt500">500万円未満</option>
+              <option value="500-1000">500〜1,000万円</option>
+              <option value="1000-3000">1,000〜3,000万円</option>
+              <option value="gte3000">3,000万円以上</option>
+              <option value="undecided">未定・要相談</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">お問い合わせ内容<span class="required">必須</span></label>
+          <textarea class="form-textarea" id="message" name="message" placeholder="現在の課題、お知りになりたい内容、ご状況などをできるだけ詳しくご記入ください。"></textarea>
+          <p class="form-note">詳しくご記入いただくほど、的確なご提案が可能です。</p>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="how">NEXSYS を知ったきっかけ<span class="optional">任意</span></label>
+          <div class="form-select-wrap">
+            <select class="form-select" id="how" name="how">
+              <option value="" selected>選択してください（任意）</option>
+              <option value="search">Web検索（Google / Yahoo等）</option>
+              <option value="sns">SNS</option>
+              <option value="exhibition">展示会・セミナー</option>
+              <option value="referral">知人・取引先の紹介</option>
+              <option value="media">業界誌・メディア</option>
+              <option value="other">その他</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-privacy">
+          ご入力いただいた個人情報は、お問い合わせへの対応・製品情報のご案内・サービス改善のために利用します。
+          第三者への提供・売却は行いません。詳細は<a href="#">プライバシーポリシー</a>をご確認ください。
+        </div>
+
+        <div class="form-group">
+          <label class="form-check">
+            <input type="checkbox" id="agree" name="agree" required>
+            <span class="form-check-label">プライバシーポリシーに同意する<span class="required" style="margin-left:6px;">必須</span></span>
+          </label>
+        </div>
+
+        <div class="form-submit-wrap">
+          <button type="submit" class="btn-primary">送信する</button>
+          <p class="form-submit-note">通常1営業日以内に<br>担当者よりご連絡します</p>
+        </div>
+      </form>
+
+      <!-- Thank you (shown after submit) -->
+      <div class="form-thankyou" id="formThankyou">
+        <div class="form-thankyou-icon"></div>
+        <h2 class="form-thankyou-title">お問い合わせありがとうございました</h2>
+        <p class="form-thankyou-desc">
+          内容を確認の上、通常1営業日以内に担当者よりご連絡いたします。<br>
+          しばらくお待ちください。
+        </p>
+      </div>
+    </main>
+
+    <!-- Sidebar -->
+    <aside class="contact-sidebar">
+
+      <div class="response-badge" style="display:inline-block;">通常1営業日以内にご回答</div>
+
+      <div class="contact-info-block">
+        <p class="contact-info-block-title">お電話でのお問い合わせ</p>
+        <div class="contact-info-block-body">
+          <p class="contact-tel">052-XXX-XXXX</p>
+          <p class="contact-tel-note">受付時間：平日 9:00〜18:00</p>
+          <p class="contact-hours">
+            土日祝日・年末年始・<br>
+            GW・夏季休暇を除く
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-info-block">
+        <p class="contact-info-block-title">メールでのお問い合わせ</p>
+        <div class="contact-info-block-body">
+          <p class="contact-email">info@nexsys-mfg.co.jp</p>
+          <p style="font-size:.78rem;color:#777;margin:0;">フォームからのお問い合わせを推奨しております</p>
+        </div>
+      </div>
+
+      <div class="contact-info-block">
+        <p class="contact-info-block-title">所在地</p>
+        <div class="contact-info-block-body">
+          <p class="contact-address">
+            〒460-0003<br>
+            愛知県名古屋市中区錦X-X-X<br>
+            ネクシスビル 7F<br><br>
+            <strong>東京オフィス</strong><br>
+            〒100-0005<br>
+            東京都千代田区丸の内X-X-X<br>
+            丸の内センタービル 12F
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-cta-card">
+        <p class="contact-cta-card-title">まずは60分の<br>無料オンライン相談から</p>
+        <p class="contact-cta-card-desc">現場の課題をお聞きした上で、最適な製品と概算費用をその場でご案内します。準備不要・資料なしでお気軽にどうぞ。</p>
+        <ul style="list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:6px;">
+          <li style="font-size:.8rem;color:rgba(255,255,255,.8);padding-left:16px;position:relative;">
+            <span style="position:absolute;left:0;color:var(--c-orange);">+</span>費用・契約の義務なし
+          </li>
+          <li style="font-size:.8rem;color:rgba(255,255,255,.8);padding-left:16px;position:relative;">
+            <span style="position:absolute;left:0;color:var(--c-orange);">+</span>技術担当者が直接対応
+          </li>
+          <li style="font-size:.8rem;color:rgba(255,255,255,.8);padding-left:16px;position:relative;">
+            <span style="position:absolute;left:0;color:var(--c-orange);">+</span>Zoom / Teams 対応
+          </li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-banner-inner">
+      <div>
+        <p class="cta-banner-title">導入事例や製品詳細も合わせてご確認ください</p>
+        <p class="cta-banner-sub">お問い合わせ前に情報収集されたい方はこちらをどうぞ。</p>
+      </div>
+      <div class="cta-banner-btns">
+        <a href="cases.html" class="btn-primary">導入事例を見る</a>
+        <a href="items.html" class="btn-outline-white">製品・料金を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="font-size:1.1rem;">NEXSYS<span>株式会社</span></a>
+        <p class="footer-desc">FA自動化設備・AI検査・予知保全ソリューションで<br>日本の製造現場の競争力を高め続けます。</p>
+      </div>
+      <div class="footer-nav-group">
+        <p class="footer-nav-title">ソリューション</p>
+        <a href="items.html#smartline">SmartLine</a>
+        <a href="items.html#qualityeye">QualityEye</a>
+        <a href="items.html#maintpro">MaintPro</a>
+      </div>
+      <div class="footer-nav-group">
+        <p class="footer-nav-title">会社情報</p>
+        <a href="why.html">スタンス</a>
+        <a href="cases.html">導入事例</a>
+        <a href="blog.html">メディア</a>
+      </div>
+      <div class="footer-nav-group">
+        <p class="footer-nav-title">サポート</p>
+        <a href="flow.html">導入フロー</a>
+        <a href="faq.html">よくある質問</a>
+        <a href="contact.html">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 NEXSYS株式会社. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">サイトマップ</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('formThankyou').classList.add('visible');
+      window.scrollTo({ top: document.getElementById('formThankyou').offsetTop - 100, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
