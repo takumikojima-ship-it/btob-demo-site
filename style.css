@@ -364,6 +364,9 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
    ---------------------------------------------------------- */
 .page-hero {
   background: var(--c-navy);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 52px 0 44px;
   position: relative;
   overflow: hidden;
@@ -371,9 +374,8 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .page-hero::before {
   content: '';
   position: absolute;
-  right: 0; top: 0; bottom: 0;
-  width: 40%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.02));
+  inset: 0;
+  background: linear-gradient(135deg, rgba(15,10,5,0.82) 0%, rgba(15,10,5,0.68) 60%, rgba(15,10,5,0.58) 100%);
   pointer-events: none;
 }
 .page-hero-inner {

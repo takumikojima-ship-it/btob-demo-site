@@ -51,18 +51,30 @@
       margin: 0 0 16px;
     }
     .article-header-thumb {
-      background: linear-gradient(135deg, var(--c-navy) 0%, #1a3a6b 100%);
+      background: var(--c-navy);
+      background-image: url('https://images.pexels.com/photos/10406128/pexels-photo-10406128.jpeg?auto=compress&cs=tinysrgb&w=1200&h=400&fit=crop');
+      background-size: cover;
+      background-position: center;
       height: 320px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 32px;
+      position: relative;
+    }
+    .article-header-thumb::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(15,10,5,0.55);
     }
     .article-header-thumb-label {
       font-size: .8rem;
       font-weight: 700;
       letter-spacing: .1em;
-      color: rgba(255,255,255,.25);
+      color: rgba(255,255,255,.6);
+      position: relative;
+      z-index: 1;
     }
 
     /* ── TOC ── */

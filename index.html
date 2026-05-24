@@ -11,6 +11,9 @@
 /* ===== HERO ===== */
 .hero {
   background: var(--c-navy);
+  background-image: url('https://images.pexels.com/photos/34207359/pexels-photo-34207359.jpeg?auto=compress&cs=tinysrgb&w=1920&h=900&fit=crop');
+  background-size: cover;
+  background-position: center 40%;
   padding: 80px 0 0;
   overflow: hidden;
   position: relative;
@@ -18,9 +21,8 @@
 .hero::before {
   content: '';
   position: absolute;
-  right: 0; top: 0; bottom: 0;
-  width: 50%;
-  background: linear-gradient(135deg, transparent 0%, rgba(124,91,58,.18) 100%);
+  inset: 0;
+  background: linear-gradient(to right, rgba(15,10,5,0.90) 0%, rgba(15,10,5,0.75) 50%, rgba(15,10,5,0.55) 100%);
 }
 .hero-inner {
   display: grid;
@@ -50,7 +52,7 @@
   letter-spacing: -.03em;
   margin-bottom: 20px;
 }
-.hero-h1 em { font-style: normal; color: #5BA3F5; }
+.hero-h1 em { font-style: normal; color: var(--c-orange); }
 .hero-desc { font-size: .97rem; color: rgba(255,255,255,.65); line-height: 1.9; margin-bottom: 36px; }
 .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 .hero-stats {
