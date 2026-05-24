@@ -46,6 +46,11 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   --c-header-bg:   #F9F5F0;   /* warm cream — ヘッダー背景 */
   --c-header-top:  #BE4F28;   /* terracotta — ヘッダー上部ライン */
 
+  /* --- Silver (Dark section replacement) --- */
+  --c-silver-bg:   #E2E6EC;   /* light steel — dark section代替 */
+  --c-silver-mid:  #C4CAD4;   /* medium steel — ボーダー・区切り */
+  --c-silver-dark: #8A96A4;   /* dark steel — アクセント */
+
   /* --- Shadows (warm-tinted) --- */
   --shadow-sm: 0 1px 4px rgba(43,31,18,.07);
   --shadow:    0 4px 16px rgba(43,31,18,.10);
@@ -111,7 +116,10 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 .inner { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
 .section { padding: var(--section-py) 0; }
 .section--alt { background: var(--c-bg); }
-.section--navy { background: var(--c-navy); }
+.section--navy {
+  background: linear-gradient(135deg, #D6DBE3 0%, #E4E8EF 55%, #D0D6DF 100%);
+  color: var(--c-text);
+}
 .section--blue-light { background: var(--c-blue-light); }
 
 /* 5. Buttons
@@ -375,7 +383,7 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(15,10,5,0.82) 0%, rgba(15,10,5,0.68) 60%, rgba(15,10,5,0.58) 100%);
+  background: linear-gradient(125deg, rgba(8,4,2,0.88) 0%, rgba(8,4,2,0.78) 55%, rgba(8,4,2,0.62) 100%);
   pointer-events: none;
 }
 .page-hero-inner {
@@ -390,9 +398,10 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   font-weight: 700;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.55);
   display: block;
   margin-bottom: 10px;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
 }
 .page-hero-title, .page-hero h1 {
   font-size: 1.9rem;
@@ -400,8 +409,14 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   color: #fff;
   margin-bottom: 12px;
   letter-spacing: -.01em;
+  text-shadow: 0 2px 14px rgba(0,0,0,0.65), 0 0 40px rgba(0,0,0,0.35);
 }
-.page-hero-desc, .page-hero p { font-size: .9rem; color: rgba(255,255,255,.6); line-height: 1.8; }
+.page-hero-desc, .page-hero p {
+  font-size: .9rem;
+  color: rgba(255,255,255,.78);
+  line-height: 1.8;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.55);
+}
 .breadcrumb {
   display: flex;
   gap: 8px;
@@ -588,7 +603,27 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 
 /* 15. CTA Banner
    ---------------------------------------------------------- */
-.cta-banner { background: var(--c-navy); padding: 72px 0; }
+.cta-banner {
+  background: linear-gradient(135deg, #D2D8E2 0%, #E2E7EE 40%, #D8DDE6 70%, #CDD4DE 100%);
+  border-top: 1px solid var(--c-silver-mid);
+  border-bottom: 1px solid var(--c-silver-mid);
+  padding: 72px 0;
+  position: relative;
+}
+/* ステンレス調の微細テクスチャ感 */
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(255,255,255,0.06) 2px,
+    rgba(255,255,255,0.06) 4px
+  );
+  pointer-events: none;
+}
 .cta-banner-inner {
   max-width: var(--container);
   margin: 0 auto;
@@ -597,11 +632,15 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   align-items: center;
   justify-content: space-between;
   gap: 32px;
+  position: relative;
+  z-index: 1;
 }
 .cta-inner {
   max-width: 640px;
   margin: 0 auto;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 .cta-label {
   display: inline-block;
@@ -609,22 +648,22 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   font-weight: 700;
   letter-spacing: .15em;
   text-transform: uppercase;
-  color: rgba(255,255,255,.4);
-  border: 1px solid rgba(255,255,255,.18);
+  color: var(--c-silver-dark);
+  border: 1px solid var(--c-silver-mid);
   padding: 5px 13px;
   margin-bottom: 20px;
 }
 .cta-banner-title, .cta-title {
   font-size: 1.7rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--c-navy);
   line-height: 1.35;
   margin-bottom: 12px;
   letter-spacing: -.01em;
 }
 .cta-banner-sub, .cta-desc {
   font-size: .88rem;
-  color: rgba(255,255,255,.6);
+  color: var(--c-text-2);
   line-height: 1.85;
 }
 .cta-banner-btns, .cta-btns {
@@ -633,8 +672,19 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   flex-shrink: 0;
   flex-wrap: wrap;
 }
-.cta-tel { margin-top: 24px; font-size: .78rem; color: rgba(255,255,255,.42); }
-.cta-tel strong { font-size: 1.1rem; color: rgba(255,255,255,.9); margin: 0 8px; }
+.cta-tel { margin-top: 24px; font-size: .78rem; color: var(--c-text-3); }
+.cta-tel strong { font-size: 1.1rem; color: var(--c-navy); margin: 0 8px; }
+/* CTAバナー内の白枠ボタン → ダーク枠に変換 */
+.cta-banner .btn-outline-white {
+  color: var(--c-navy);
+  border-color: rgba(43,31,18,0.35);
+  background: transparent;
+}
+.cta-banner .btn-outline-white:hover {
+  background: var(--c-navy);
+  color: #fff;
+  border-color: var(--c-navy);
+}
 
 /* 16. Footer
    ---------------------------------------------------------- */
