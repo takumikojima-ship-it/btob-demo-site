@@ -25,36 +25,36 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
 /* 2. Design Tokens
    ---------------------------------------------------------- */
 :root {
-  /* --- Brand Colors: Espresso × Copper × Terracotta --- */
-  --c-navy:        #2B1F12;   /* deep espresso — ヘッダー文字・フッター・見出し */
-  --c-blue:        #7C5B3A;   /* warm copper — リンク・アクセント */
-  --c-blue-mid:    #9A7350;   /* lighter copper — ホバー */
-  --c-blue-light:  #F5EDE2;   /* warm cream — 薄い背景 */
-  --c-orange:      #BE4F28;   /* terracotta — CTAボタン専用 */
+  /* --- Brand Colors: Gunmetal × Steel × Terracotta --- */
+  --c-navy:        #1E2A38;   /* gunmetal dark — ヘッダー文字・フッター・見出し */
+  --c-blue:        #4A6080;   /* steel blue — リンク・アクセント */
+  --c-blue-mid:    #6A8099;   /* mid steel — ホバー */
+  --c-blue-light:  #E8EEF4;   /* pale steel — 薄い背景 */
+  --c-orange:      #BE4F28;   /* terracotta — CTAボタン専用（アクセント） */
   --c-orange-lt:   #FAECE6;   /* 薄いテラコッタ背景 */
 
-  /* --- Neutral: Warm Taupe Scale --- */
-  --c-bg:          #F2EDE6;   /* warm off-white — 偶数セクション背景 */
-  --c-bg-alt:      #E8DFD4;   /* warm sand — 代替背景 */
-  --c-text:        #1E1510;   /* dark espresso — 本文 */
-  --c-text-2:      #5A4E42;   /* mid brown — サブテキスト */
-  --c-text-3:      #8C7E72;   /* warm gray — ミュート・メタ */
-  --c-border:      #D4C8BA;   /* warm taupe — ボーダー */
+  /* --- Neutral: Cool Steel Scale --- */
+  --c-bg:          #EEF0F3;   /* cool light gray — 偶数セクション背景 */
+  --c-bg-alt:      #E3E7EC;   /* cool gray — 代替背景 */
+  --c-text:        #1A2130;   /* dark gunmetal — 本文 */
+  --c-text-2:      #485667;   /* mid steel — サブテキスト */
+  --c-text-3:      #7A8899;   /* steel gray — ミュート・メタ */
+  --c-border:      #C8CDD6;   /* cool border — ボーダー */
   --c-white:       #FFFFFF;
 
   /* --- Header Specific --- */
-  --c-header-bg:   #F9F5F0;   /* warm cream — ヘッダー背景 */
-  --c-header-top:  #BE4F28;   /* terracotta — ヘッダー上部ライン */
+  --c-header-bg:   #F3F5F8;   /* silver white — ヘッダー背景 */
+  --c-header-top:  #BE4F28;   /* terracotta — ヘッダー上部ライン（アクセント維持） */
 
-  /* --- Silver (Dark section replacement) --- */
-  --c-silver-bg:   #E2E6EC;   /* light steel — dark section代替 */
-  --c-silver-mid:  #C4CAD4;   /* medium steel — ボーダー・区切り */
-  --c-silver-dark: #8A96A4;   /* dark steel — アクセント */
+  /* --- Silver (section backgrounds) --- */
+  --c-silver-bg:   #DDE2E8;   /* light steel — dark section代替 */
+  --c-silver-mid:  #B8C2CC;   /* medium steel — ボーダー・区切り */
+  --c-silver-dark: #7A8899;   /* dark steel — アクセント */
 
-  /* --- Shadows (warm-tinted) --- */
-  --shadow-sm: 0 1px 4px rgba(43,31,18,.07);
-  --shadow:    0 4px 16px rgba(43,31,18,.10);
-  --shadow-lg: 0 8px 32px rgba(43,31,18,.18);
+  /* --- Shadows (cool-tinted) --- */
+  --shadow-sm: 0 1px 4px rgba(30,42,56,.07);
+  --shadow:    0 4px 16px rgba(30,42,56,.10);
+  --shadow-lg: 0 8px 32px rgba(30,42,56,.18);
 
   /* --- Border Radius --- */
   --r-sm: 2px;
